@@ -75,6 +75,7 @@ FPS = 30
 
 #Definindo all sprites
 all_sprites = pygame.sprite.Group()
+ob = pygame.sprite.Group()
 
 # Criando o jogador
 player = Jogador(jogador_img)
