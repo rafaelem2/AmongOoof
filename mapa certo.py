@@ -3,6 +3,7 @@
 import pygame
 import math
 import time
+from final.py import *
 
 #Inicializando
 pygame.init()
@@ -23,6 +24,9 @@ jogador_img = pygame.image.load('imagens/Among_Us_Ciano.png').convert_alpha()
 jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH, jogador_HEIGHT))
 verde_img = pygame.image.load('imagens/Among_Us_Green.png').convert_alpha()
 verde_img = pygame.transform.scale(verde_img, (jogador_WIDTH, jogador_HEIGHT))
+tartaruga_img = pygame.image.load('imagens/tartaruga.jpg').convert_alpha()
+tartaruga_img = pygame.transform.scale(tartaruga_img, (jogador_WIDTH, jogador_HEIGHT))
+
 
 # ----- Inicia estruturas de dados
 # Definindo os novos tipos
@@ -65,6 +69,15 @@ class Verde(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH - 60
         self.rect.centery = HEIGHT - 70
 
+class Tartaruga(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH - 400
+        self.rect.centery = HEIGHT - 120
+
 
 # ----- Inicia estruturas de dados
 game = True
@@ -75,7 +88,8 @@ FPS = 30
 
 #Definindo all sprites
 all_sprites = pygame.sprite.Group()
-ob = pygame.sprite.Group()
+ob_verde = pygame.sprite.Group()
+ob_tartaruga = pygame.sprite.Group()
 
 # Criando o jogador
 player = Jogador(jogador_img)
@@ -84,13 +98,25 @@ all_sprites.add(player)
 #Criando o personagem verde
 personagem_verde = Verde(verde_img)
 all_sprites.add(personagem_verde)
-ob.add(personagem_verde)
+ob_verde.add(personagem_verde)
+
+#Criando a personagem tartaruga
+personagem_tartaruga = Tartaruga(tartaruga_img)
+all_sprites.add(personagem_tartaruga)
+ob_tartaruga.add(personagem_tartaruga)
 
 #Definindo o valor RGB para branco, verde e azul (cores das fontes)
 white = (255, 255, 255) 
 green = (0, 255, 0) 
 blue = (0, 0, 128) 
 
+#Criando variáveis
+text = ''
+tempo = pygame.time.get_ticks()
+tempo_verde = pygame.time.get_ticks()
+tempo_tartaruga = pygame.time.get_ticks()
+
+'''
 #Criando função para objetos do texto
 def objetos_textinho(texto, font):
     superficie = font.render(texto, True, white, blue)
@@ -102,18 +128,16 @@ def message_display(texto):
     superficie_textinho, retangulo_textinho = objetos_textinho(texto, textinho)
     retangulo_textinho.centerx = WIDTH / 2
     retangulo_textinho.centery = HEIGHT - 60
-    pygame.display.blit = (superficie_textinho, retangulo_textinho)
-    #
-    pygame.display.update()
+    pygame.display.blit(superficie_textinho, retangulo_textinho)
+    
+    #pygame.display.update()
 
     #time.sleep(3)
 
 #Criando a função da fala do personagem verde
 def fala_verde():
     message_display('Eu sou o assassino')
-
-#Criando contador
-contador = 0
+'''
 
 # ===== Loop principal =====
 while game:
@@ -153,18 +177,48 @@ while game:
     all_sprites.update()
 
     #Verificando se houve colisão entre o jogador e o personagem verde
-    hit_verde = pygame.sprite.spritecollide(player, ob, False)
+    hit_verde = pygame.sprite.spritecollide(player, ob_verde, False)
     if len(hit_verde) == 1:
-        fala_verde()
+        #fala_verde()
+        print('oi')
+        text = 'bom dia'
+        tempo_verde = pygame.time.get_ticks()
+        
+    #Verificando se houve colisão entre o jogador e a personagem tartaruga
+    hit_tartaruga = pygame.sprite.spritecollide(player, ob_tartaruga, False)
+    if len(hit_tartaruga) == 1:
+        print('oie\n')
+        text = 'eae'
+        tempo_tartaruga = pygame.time.get_ticks()
 
     # ----- Gera saídas
     window.fill((0, 0, 0))  # Preenche com a cor preta
     window.blit(background, (0, 0))
+
+    #Criando padrões para formato do texto
+    superficie = font.render(text, True, blue)
+    tempo = pygame.time.get_ticks()
+
+    #Para o verde
+    if tempo - tempo_verde < 2000:
+        window.blit(superficie, (0,0))
     #window.blit(jogador, (meteor_x, meteor_y))
+
+    #Para a tartaruga
+    if tempo - tempo_tartaruga < 2000:
+        window.blit(superficie, (0,0))
+
+    #Para o final
+    if tempo > 10000:
+        Final(window)
 
     all_sprites.draw(window)
 
     pygame.display.update()  # Mostra o novo frame para o jogador
+
+
+# ===== Final =====
+
 
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
