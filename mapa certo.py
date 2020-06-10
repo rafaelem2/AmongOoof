@@ -1,6 +1,8 @@
 #------Inicialização-----
 #Importando bibliotecas
 import pygame
+import math
+import time
 
 #Inicializando
 pygame.init()
@@ -81,6 +83,36 @@ all_sprites.add(player)
 #Criando o personagem verde
 personagem_verde = Verde(verde_img)
 all_sprites.add(personagem_verde)
+ob.add(personagem_verde)
+
+#Definindo o valor RGB para branco, verde e azul (cores das fontes)
+white = (255, 255, 255) 
+green = (0, 255, 0) 
+blue = (0, 0, 128) 
+
+#Criando função para objetos do texto
+def objetos_textinho(texto, font):
+    superficie = font.render(texto, True, white, blue)
+    return superficie, superficie.get_rect()
+
+#Criando função para textos
+def message_display(texto):
+    textinho = pygame.font.Font('freesansbold.ttf', 60)
+    superficie_textinho, retangulo_textinho = objetos_textinho(texto, textinho)
+    retangulo_textinho.centerx = WIDTH / 2
+    retangulo_textinho.centery = HEIGHT - 60
+    pygame.display.blit = (superficie_textinho, retangulo_textinho)
+    #
+    pygame.display.update()
+
+    #time.sleep(3)
+
+#Criando a função da fala do personagem verde
+def fala_verde():
+    message_display('Eu sou o assassino')
+
+#Criando contador
+contador = 0
 
 # ===== Loop principal =====
 while game:
@@ -115,14 +147,14 @@ while game:
                 player.speedy -= 8
             if event.key == pygame.K_DOWN:
                 player.speedy += 8
-        
-        #distancia = sqrt((WIDTH - 60 - posicaox)**2 + (HEIGHT - 70 - posicaoy)**2)
-
-        #if distancia < 5:
-            
 
     # ----- Atualiza estado do jogo
     all_sprites.update()
+
+    #Verificando se houve colisão entre o jogador e o personagem verde
+    hit_verde = pygame.sprite.spritecollide(player, ob, False)
+    if len(hit_verde) == 1:
+        fala_verde()
 
     # ----- Gera saídas
     window.fill((0, 0, 0))  # Preenche com a cor preta
