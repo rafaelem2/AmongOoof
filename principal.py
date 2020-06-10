@@ -206,24 +206,24 @@ while game:
     tempo = pygame.time.get_ticks()
 
     #Para o verde
-    if tempo - tempo_verde < 2000:
+    if tempo - tempo_verde < 1000:
         window.blit(superficie, (0,0))
     #window.blit(jogador, (meteor_x, meteor_y))
 
     #Para o vermelho
-    if tempo - tempo_vermelho < 2000:
+    if tempo - tempo_vermelho < 1000:
         window.blit(superficie, (0,0))
 
     #Para o amarelo
-    if tempo - tempo_amarelo < 2000:
+    if tempo - tempo_amarelo < 1000:
         window.blit(superficie, (0,0))
 
     #Para o preto
-    if tempo - tempo_preto < 2000:
+    if tempo - tempo_preto < 1000:
         window.blit(superficie, (0,0))
 
     #Para o rosa
-    if tempo - tempo_rosa < 2000:
+    if tempo - tempo_rosa < 1000:
         window.blit(superficie, (0,0))
 
     #Para o final
