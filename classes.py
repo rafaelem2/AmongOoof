@@ -20,9 +20,6 @@ class Jogador(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y -= self.speedy
 
-        posicaox = self.rect.x
-        posicaoy = self.rect.y
-
         # Mantem dentro da tela
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
@@ -76,4 +73,40 @@ class Rosa(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH - 100
-        self.rect.centery = HEIGHT - 300
+        self.rect.centery = HEIGHT - 350
+
+class Branco(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH - 650
+        self.rect.centery = HEIGHT - 450
+
+class Roxo(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH - 600 
+        self.rect.centery = HEIGHT - 50
+
+class Laranja(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH - 400   
+        self.rect.centery = HEIGHT - 400
+    
+class Azul(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH - 90
+        self.rect.centery = HEIGHT - 700
