@@ -1,5 +1,5 @@
 import pygame
-from classes import *
+from classes_final import *
 
 def Final(window):
     #Criando tela
@@ -21,10 +21,10 @@ def Final(window):
     background = pygame.image.load('imagens/mapa teste.png').convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
-    jogador_img = pygame.image.load('imagens/Among_Us_Ciano.png').convert_alpha()
-    jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2))
+    jogador_img = pygame.image.load('imagens/Among_Us_detetive.png').convert_alpha()
+    jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2 + 20))
 
-    verde_img = pygame.image.load('imagens/Among_Us_Green.png').convert_alpha()
+    verde_img = pygame.image.load('imagens/Among_Us_Verde.png').convert_alpha()
     verde_img = pygame.transform.scale(verde_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
     vermelho_img = pygame.image.load('imagens/Among_Us_Vermelho.png').convert_alpha()
