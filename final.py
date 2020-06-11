@@ -6,6 +6,12 @@ def Final(window):
     WIDTH = 383*2
     HEIGHT = 286*2
 
+    #Criando variáveis
+    text = ''
+
+    #Criando a cor branca
+    white = (255, 255, 255) 
+
     #Criando o fundo e os personagens
     jogador_WIDTH2 = 100
     jogador_HEIGHT2 = 100
@@ -41,7 +47,7 @@ def Final(window):
     ob_verde.add(personagem_verde)
 
     
-
+    player.speedx=0
     # ===== Loop principal =====
     while game:
         clock.tick(FPS)
@@ -57,26 +63,40 @@ def Final(window):
             if event.type == pygame.KEYDOWN:
                 #Dependendo da tecla, altera a velocidade
                 if event.key == pygame.K_LEFT:
-                    player.speedx -= 8
+                    player.speedx = -8
                 if event.key == pygame.K_RIGHT:
-                    player.speedx += 8
+                    player.speedx = 8
                 if event.key == pygame.K_UP:
-                    player.speedy += 8
+                    player.speedy = 8
                 if event.key == pygame.K_DOWN:
-                    player.speedy -= 8
-                    print('oi\n')
+                    player.speedy = -8
+            
                 
             #Verifica se soltou alguma tecla
             if event.type == pygame.KEYUP:
                 #Dependendo da tecla, altera a velocidade
                 if event.key == pygame.K_LEFT:
-                    player.speedx += 8
+                    player.speedx = 0
                 if event.key == pygame.K_RIGHT:
-                    player.speedx -= 8
+                    player.speedx = 0
                 if event.key == pygame.K_UP:
-                    player.speedy -= 8
+                    player.speedy = 0
                 if event.key == pygame.K_DOWN:
-                    player.speedy += 8
+                    player.speedy = 0
+
+        #Acertou o assassino            
+        hit_verde = pygame.sprite.spritecollide(player, ob_verde, False)
+        if len(hit_verde) == 1:
+            window.fill((0, 0, 0))  # Preenche com a cor preta
+            text = 'Você acertou!'
+            
+        
+        #Criando padrões para formato do texto
+        superficie = font.render(text, True, white)
+
+        #Posição do texto
+        window.blit(superficie,(383-superficie.get_rect().width/2,286))
+        
 
         # ----- Gera saídas
         
