@@ -133,9 +133,11 @@ def Principal(window):
     white = (255, 255, 255) 
     green = (0, 255, 0) 
     blue = (0, 0, 128) 
+    black = (0,0,0)
 
     #Criando variáveis
     text = ''
+    text_preto = ''
     tempo = pygame.time.get_ticks()
     tempo_verde = pygame.time.get_ticks()
     tempo_vermelho = pygame.time.get_ticks()
@@ -235,7 +237,7 @@ def Principal(window):
         #Verificando se houve colisão entre o jogador e o personagem preto
         hit_preto = pygame.sprite.spritecollide(player, ob_preto, False)
         if len(hit_preto) == 1:
-            text = 'eae'
+            text_preto = 'estou morto ;-;'
             tempo_preto = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem rosa
@@ -275,6 +277,7 @@ def Principal(window):
         #Criando padrões para formato do texto
         superficie = font.render(text, True, blue)
         tempo = pygame.time.get_ticks()
+        superficie_preto = font.render(text_preto, True, black)
 
         #Para o verde
         if tempo - tempo_verde < 500:
@@ -291,7 +294,7 @@ def Principal(window):
 
         #Para o preto
         if tempo - tempo_preto < 500:
-            window.blit(superficie, (0,0))
+            window.blit(superficie_preto, (0,0))
 
         #Para o rosa
         if tempo - tempo_rosa < 500:
@@ -314,7 +317,7 @@ def Principal(window):
             window.blit(superficie, (0,0))
 
         #Para o final
-        if tempo > 20000:
+        if tempo > 30000:
             Final(window)
 
         all_sprites.draw(window)
