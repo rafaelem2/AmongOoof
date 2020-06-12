@@ -1,5 +1,7 @@
+#Importando bibliotecas
 import pygame
 from classes_final import *
+from pygame import mixer
 
 def Final(window):
     #Criando tela
@@ -18,7 +20,7 @@ def Final(window):
     jogador_WIDTH2 = 80
     jogador_HEIGHT2 = 80
     font = pygame.font.SysFont(None, 48)
-    background = pygame.image.load('imagens/mapa teste.png').convert()
+    background = pygame.image.load('imagens/mapa teste.png').convert() 
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
     jogador_img = pygame.image.load('imagens/Among_Us_detetive.png').convert_alpha()
@@ -47,7 +49,6 @@ def Final(window):
 
     azul_img = pygame.image.load('imagens/Among_Us_Azul_esq.png').convert_alpha()
     azul_img = pygame.transform.scale(azul_img, (jogador_WIDTH2, jogador_HEIGHT2))
-        
 
 
     # ----- Inicia estruturas de dados
@@ -67,7 +68,6 @@ def Final(window):
     ob_roxo = pygame.sprite.Group()
     ob_laranja = pygame.sprite.Group()
     ob_azul = pygame.sprite.Group()
-        
 
     # Criando o jogador
     player = Jogador(jogador_img)
@@ -115,6 +115,11 @@ def Final(window):
 
     #Jogador para de andar
     player.speedx = 0
+
+    #Colocando a música de abertura
+    mixer.music.load('sons/abertura.mp3')
+    mixer.music.play(-1)
+
     # ===== Loop principal =====
     while game:
         clock.tick(FPS)
@@ -131,8 +136,10 @@ def Final(window):
                 #Dependendo da tecla, altera a velocidade
                 if event.key == pygame.K_LEFT:
                     player.speedx = -8
+                    player.image = player.jogador_img_esq
                 if event.key == pygame.K_RIGHT:
                     player.speedx = 8
+                    player.image = player.jogador_img_dir
                 if event.key == pygame.K_UP:
                     player.speedy = 8
                 if event.key == pygame.K_DOWN:
@@ -160,6 +167,9 @@ def Final(window):
         hit_verde = pygame.sprite.spritecollide(player, ob_verde, False)
         if len(hit_verde) == 1:
             text = 'Parabéns, você acertou! :D'
+            #Colocando a música
+            mixer.music.load('sons/ganhou.mp3')
+            mixer.music.play(-1)
            
         
         #Errou o assassino
@@ -172,6 +182,9 @@ def Final(window):
         hit_azul = pygame.sprite.spritecollide(player, ob_azul, False)
         if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_rosa) == 1 or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
             text = 'Você errou, reinicie e tente de novo :('
+            #Colocando a música de abertura
+            mixer.music.load('sons/perdeu.mp3')
+            mixer.music.play(-1)
             
 
         #Criando padrões para formato do texto

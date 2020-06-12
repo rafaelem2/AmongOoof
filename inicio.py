@@ -1,5 +1,7 @@
+#Importando bibliotecas
 import pygame
 from principal import *
+from pygame import mixer
 
 #Inicializando
 pygame.init()
@@ -14,8 +16,11 @@ pygame.display.set_caption('Among OOOF')
 text = ''
 mensagem = ''
 
+
+
 #Criando a fonte para o texto
-font = pygame.font.SysFont(None, 48)
+font_ola = pygame.font.SysFont(None, 50)
+font_outros = pygame.font.SysFont(None, 25)
 
 #Criando a cor branca
 white = (255, 255, 255) 
@@ -33,7 +38,7 @@ all_sprites = pygame.sprite.Group()
 
 #Criando o personagem morto
 preto_img = pygame.image.load('imagens/morto.png').convert_alpha()
-preto_img = pygame.transform.scale(preto_img, (200,180))
+preto_img = pygame.transform.scale(preto_img, (200, 180))
 
 class Preto(pygame.sprite.Sprite): 
     def __init__(self, img):
@@ -48,29 +53,36 @@ class Preto(pygame.sprite.Sprite):
 personagem_preto = Preto(preto_img)
 all_sprites.add(personagem_preto)
 
+#Colocando a música de abertura
+mixer.music.load('sons/abertura.mp3')
+mixer.music.play(-1)
+
 while game:
+    #Começando a contagem de tempo
+    tempo_principal = pygame.time.get_ticks()
+
     clock.tick(FPS)
     window.fill((255, 255, 255)) # Preenche com a cor branco
 
     #Escrevendo os textos
     mensagem1 = 'Olá, detetive!'
-    superficie_1 = font.render(mensagem1, True, blood)
+    superficie_1 = font_ola.render(mensagem1, True, blood)
     window.blit(superficie_1,(383-superficie_1.get_rect().width/2, 20))
 
     mensagem2 = 'converse com os personagens'
-    superficie_2 = font.render(mensagem2, True, blood)
+    superficie_2 = font_outros.render(mensagem2, True, blood)
     window.blit(superficie_2,(383-superficie_2.get_rect().width/2, 450))
 
     mensagem3 = 'e descubra quem é o impostor'
-    superficie_3 = font.render(mensagem3, True, blood)
+    superficie_3 = font_outros.render(mensagem3, True, blood)
     window.blit(superficie_3,(383-superficie_3.get_rect().width/2, 500))
-
+    '''
     mensagem4 = 'aperte espaço para começar'
-    superficie_4 = font.render(mensagem4, True, blood)
+    superficie_4 = font_outros.render(mensagem4, True, blood)
     window.blit(superficie_4,(383-superficie_4.get_rect().width/2, 100))
-
+    '''
     mensagem5 = 'use as setas para andar pelo mapa,'
-    superficie_5 = font.render(mensagem5, True, blood)
+    superficie_5 = font_outros.render(mensagem5, True, blood)
     window.blit(superficie_5,(383-superficie_5.get_rect().width/2, 400))
 
     # ----- Trata eventos
@@ -78,13 +90,18 @@ while game:
         # ----- Verifica consequências
         if event.type == pygame.QUIT:
             game = False
+    
+    #Para o final
+    if tempo_principal >= 10000:
+        Principal(window)
 
+        '''
         #Verifica se apertou alguma tecla
         if event.type == pygame.KEYDOWN:
             #Dependendo da tecla, altera a velocidade
             if event.key == pygame.K_SPACE:
                 Principal(window)
-                tempo_principal = pygame.time.get_ticks()
+        '''
 
     # ----- Gera saídas
     all_sprites.update()

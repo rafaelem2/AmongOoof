@@ -5,6 +5,7 @@ import math
 import time
 from final import *
 from classes import *
+from pygame import mixer
 
 #Criando função principal
 def Principal(window):
@@ -21,9 +22,6 @@ def Principal(window):
 
     background = pygame.image.load('imagens/mapa teste.png').convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
-
-    jogador_img = pygame.image.load('imagens/Among_Us_detetive.png').convert_alpha()
-    jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH, jogador_HEIGHT + 20))
 
     verde_img = pygame.image.load('imagens/Among_Us_Verde.png').convert_alpha()
     verde_img = pygame.transform.scale(verde_img, (jogador_WIDTH, jogador_HEIGHT))
@@ -57,7 +55,9 @@ def Principal(window):
     # ----- Inicia estruturas de dados
     # Definindo os novos tipos
 
-
+    #Colocando a música de fundo
+    mixer.music.load('sons/principal_musica.mp3')
+    mixer.music.play(-1)
 
     # ----- Inicia estruturas de dados
     game = True
@@ -80,8 +80,9 @@ def Principal(window):
     ob_laranja = pygame.sprite.Group()
     ob_azul = pygame.sprite.Group()
 
+
     # Criando o jogador
-    player = Jogador(jogador_img)
+    player = Jogador()
     all_sprites.add(player)
 
     #Criando o personagem verde
@@ -164,17 +165,11 @@ def Principal(window):
     tempo_laranja = pygame.time.get_ticks()
     tempo_azul = pygame.time.get_ticks()
 
-
     # ===== Loop principal =====
     while game:
         clock.tick(FPS)
 
         tempo_principal = pygame.time.get_ticks()
-
-        #Imprimindo tempo
-        contando = 30 - tempo_principal/1000
-        conta = int(contando)
-        superficie_cont = font.render(str(conta), True, blood)  
 
         # ----- Trata eventos
         for event in pygame.event.get():
@@ -187,8 +182,10 @@ def Principal(window):
                 #Dependendo da tecla, altera a velocidade
                 if event.key == pygame.K_LEFT:
                     player.speedx -= 8
+                    player.image = player.jogador_img_esq
                 if event.key == pygame.K_RIGHT:
                     player.speedx += 8
+                    player.image = player.jogador_img_dir
                 if event.key == pygame.K_UP:
                     player.speedy += 8
                 if event.key == pygame.K_DOWN:
@@ -205,6 +202,12 @@ def Principal(window):
                     player.speedy -= 8
                 if event.key == pygame.K_DOWN:
                     player.speedy += 8
+
+
+        #Imprimindo tempo
+        contando = 30 - (tempo_principal-10000)/1000
+        conta = int(contando)
+        superficie_cont = font.render(str(conta), True, blood)  
 
         # ----- Atualiza estado do jogo
         all_sprites.update()
@@ -319,15 +322,15 @@ def Principal(window):
             window.blit(superficie_azul, (0,0))
 
         #Para o tempo
-        if tempo_principal <= 30000:
+        if tempo_principal <= 40000:
             window.blit(superficie_cont,(WIDTH - 50, 20))
 
         #Para o final
-        if tempo_principal > 30000:
+        if tempo_principal > 40000:
             Final(window)
 
-        all_sprites.draw(window)
 
+        all_sprites.draw(window)
         pygame.display.update()  # Mostra o novo frame para o jogador
 
     # ===== Finalização =====
