@@ -108,5 +108,5 @@ class Azul(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 90
-        self.rect.centery = HEIGHT - 700
+        self.rect.centerx = WIDTH - 700
+        self.rect.centery = HEIGHT - 90
