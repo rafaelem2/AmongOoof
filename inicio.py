@@ -1,57 +1,89 @@
 import pygame
+from principal import *
 
-def Inicio(window):
-    #Criando tela
-    WIDTH = 383*2
-    HEIGHT = 286*2
+#Inicializando
+pygame.init()
 
-    #Criando variáveis
-    text = ''
-    mensagem = ''
+#Criando tela
+WIDTH = 383*2
+HEIGHT = 286*2
+window = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption('Among OOOF')
 
-    #Criando a cor branca
-    white = (255, 255, 255) 
-    red = (255,0,0)
+#Criando variáveis
+text = ''
+mensagem = ''
 
-    # ----- Inicia estruturas de dados
-    game = True
+#Criando a fonte para o texto
+font = pygame.font.SysFont(None, 48)
 
-    # Variável para o ajuste de velocidade
-    clock = pygame.time.Clock()
-    FPS = 30
+#Criando a cor branca
+white = (255, 255, 255) 
+red = (255,0,0)
 
-   
+# ----- Inicia estruturas de dados
+game = True
+
+# Variável para o ajuste de velocidade
+clock = pygame.time.Clock()
+FPS = 30
     
+#Definindo all sprites
+all_sprites = pygame.sprite.Group()
 
+#Criando o personagem morto
+preto_img = pygame.image.load('imagens/morto.png').convert_alpha()
+preto_img = pygame.transform.scale(preto_img, (200,180))
 
-    while game:
-        clock.tick(FPS)
-        window.fill((0, 0, 0)) # Preenche com a cor preta
+class Preto(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
 
-        #Escrevendo os textos
-        mensagem1 = 'Olá, detetive!'
-        superficie_1 = font.render(mensagem, True, red)
-        window.blit(superficie_1,(383-superficie_1.get_rect().width/2, 20))
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH/2
+        self.rect.centery = HEIGHT/2
 
-        mensagem2 = 'Converse com os personagens e \n descubra quem é o impostor'
-        superficie_2 = font.render(mensagem, True, red)
-        window.blit(superficie2,(383-superficie_2.get_rect().width/2, 400))
+#Criando o personagem preto
+personagem_preto = Preto(preto_img)
+all_sprites.add(personagem_preto)
 
-        # ----- Trata eventos
-        for event in pygame.event.get():
-            # ----- Verifica consequências
-            if event.type == pygame.QUIT:
-                game = False
+while game:
+    clock.tick(FPS)
+    window.fill((255, 255, 255)) # Preenche com a cor branco
 
-            #Verifica se apertou alguma tecla
-            if event.type == pygame.KEYDOWN:
-                #Dependendo da tecla, altera a velocidade
-                if event.key == pygame.K_KP_ENTER:
-                    break
+    #Escrevendo os textos
+    mensagem1 = 'Olá, detetive!'
+    superficie_1 = font.render(mensagem1, True, red)
+    window.blit(superficie_1,(383-superficie_1.get_rect().width/2, 20))
 
-        # ----- Gera saídas
-        all_sprites.update()
-        all_sprites.draw(window)
-        pygame.display.update()  # Mostra o novo frame para o jogador
+    mensagem2 = 'converse com os personagens'
+    superficie_2 = font.render(mensagem2, True, red)
+    window.blit(superficie_2,(383-superficie_2.get_rect().width/2, 400))
+
+    mensagem3 = 'e descubra quem é o impostor'
+    superficie_3 = font.render(mensagem3, True, red)
+    window.blit(superficie_3,(383-superficie_3.get_rect().width/2, 450))
+
+    mensagem4 = 'aperte espaço para começar'
+    superficie_4 = font.render(mensagem4, True, red)
+    window.blit(superficie_4,(383-superficie_4.get_rect().width/2, 100))
+
+    # ----- Trata eventos
+    for event in pygame.event.get():
+        # ----- Verifica consequências
+        if event.type == pygame.QUIT:
+            game = False
+
+        #Verifica se apertou alguma tecla
+        if event.type == pygame.KEYDOWN:
+            #Dependendo da tecla, altera a velocidade
+            if event.key == pygame.K_SPACE:
+                Principal(window)
+
+    # ----- Gera saídas
+    all_sprites.update()
+    all_sprites.draw(window)
+    pygame.display.update()  # Mostra o novo frame para o jogador
 
 pygame.quit()
