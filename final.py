@@ -15,28 +15,25 @@ def Final(window):
     red = (255,0,0)
 
     #Criando o fundo e os personagens
-    jogador_WIDTH2 = 100
-    jogador_HEIGHT2 = 100
+    jogador_WIDTH2 = 80
+    jogador_HEIGHT2 = 80
     font = pygame.font.SysFont(None, 48)
     background = pygame.image.load('imagens/mapa teste.png').convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
     jogador_img = pygame.image.load('imagens/Among_Us_detetive.png').convert_alpha()
-    jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2 + 20))
+    jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2 + 16))
 
-    verde_img = pygame.image.load('imagens/Among_Us_Verde.png').convert_alpha()
+    verde_img = pygame.image.load('imagens/Among_Us_Verde_esq.png').convert_alpha()
     verde_img = pygame.transform.scale(verde_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
     vermelho_img = pygame.image.load('imagens/Among_Us_Vermelho.png').convert_alpha()
     vermelho_img = pygame.transform.scale(vermelho_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    amarelo_img = pygame.image.load('imagens/Among_Us_Amarelo.png').convert_alpha()
+    amarelo_img = pygame.image.load('imagens/Among_Us_Amarelo_esq.png').convert_alpha()
     amarelo_img = pygame.transform.scale(amarelo_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    preto_img = pygame.image.load('imagens/Among_Us_Preto.png').convert_alpha()
-    preto_img = pygame.transform.scale(preto_img, (jogador_WIDTH2, jogador_HEIGHT2))
-
-    rosa_img = pygame.image.load('imagens/Among_Us_Rosa.png').convert_alpha()
+    rosa_img = pygame.image.load('imagens/Among_Us_Rosa_esq.png').convert_alpha()
     rosa_img = pygame.transform.scale(rosa_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
     branco_img = pygame.image.load('imagens/Among_Us_Branco.png').convert_alpha()
@@ -48,7 +45,7 @@ def Final(window):
     laranja_img = pygame.image.load('imagens/Among_Us_Laranja.png').convert_alpha()
     laranja_img = pygame.transform.scale(laranja_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    azul_img = pygame.image.load('imagens/Among_Us_Azul.png').convert_alpha()
+    azul_img = pygame.image.load('imagens/Among_Us_Azul_esq.png').convert_alpha()
     azul_img = pygame.transform.scale(azul_img, (jogador_WIDTH2, jogador_HEIGHT2))
         
 
@@ -65,7 +62,6 @@ def Final(window):
     ob_verde = pygame.sprite.Group()
     ob_vermelho = pygame.sprite.Group()
     ob_amarelo = pygame.sprite.Group()
-    ob_preto = pygame.sprite.Group()
     ob_rosa = pygame.sprite.Group()
     ob_branco = pygame.sprite.Group()
     ob_roxo = pygame.sprite.Group()
@@ -91,11 +87,6 @@ def Final(window):
     personagem_amarelo = Amarelo(amarelo_img)
     all_sprites.add(personagem_amarelo)
     ob_amarelo.add(personagem_amarelo)
-
-    #Criando o personagem preto
-    personagem_preto = Preto(preto_img)
-    all_sprites.add(personagem_preto)
-    ob_preto.add(personagem_preto)
 
     #Criando o personagem rosa
     personagem_rosa = Rosa(rosa_img)
@@ -161,7 +152,7 @@ def Final(window):
                     player.speedy = 0
         
         #Escrevendo o texto
-        mensagem = 'ande até o assassino'
+        mensagem = 'ande até o impostor'
         superficie2 = font.render(mensagem, True, red)
         window.blit(superficie2,(383-superficie2.get_rect().width/2,20))
 
@@ -174,13 +165,12 @@ def Final(window):
         #Errou o assassino
         hit_vermelho = pygame.sprite.spritecollide(player, ob_vermelho, False)
         hit_amarelo = pygame.sprite.spritecollide(player, ob_amarelo, False)
-        hit_preto = pygame.sprite.spritecollide(player, ob_preto, False)
         hit_rosa = pygame.sprite.spritecollide(player, ob_rosa, False)
         hit_branco = pygame.sprite.spritecollide(player, ob_branco, False)
         hit_roxo = pygame.sprite.spritecollide(player, ob_roxo, False)
         hit_laranja = pygame.sprite.spritecollide(player, ob_laranja, False)
         hit_azul = pygame.sprite.spritecollide(player, ob_azul, False)
-        if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_preto) == 1 or len(hit_rosa) == 1 or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
+        if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_rosa) == 1 or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
             text = 'Você errou, reinicie e tente de novo :('
             
 
@@ -200,7 +190,7 @@ def Final(window):
         pygame.display.update()  # Mostra o novo frame para o jogador
 
         #fim
-        if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_preto) == 1 or len(hit_rosa) == 1 or len(hit_verde) or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
+        if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_rosa) == 1 or len(hit_verde) or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
             pygame.time.delay(2000)
             pygame.quit()
     

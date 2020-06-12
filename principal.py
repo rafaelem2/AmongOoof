@@ -315,7 +315,7 @@ while game:
         window.blit(superficie, (0,0))
 
     #Para o final
-    if tempo > 20000:
+    if tempo > 200:
         Final(window)
 
     all_sprites.draw(window)

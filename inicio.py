@@ -13,6 +13,17 @@ def Inicio(window):
     white = (255, 255, 255) 
     red = (255,0,0)
 
+    # ----- Inicia estruturas de dados
+    game = True
+
+    # Variável para o ajuste de velocidade
+    clock = pygame.time.Clock()
+    FPS = 30
+
+   
+    
+
+
     while game:
         clock.tick(FPS)
         window.fill((0, 0, 0)) # Preenche com a cor preta
