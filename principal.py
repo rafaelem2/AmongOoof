@@ -20,7 +20,7 @@ def Principal(window):
     jogador_HEIGHT = 50
     font = pygame.font.SysFont(None, 48)
 
-    background = pygame.image.load('imagens/mapa teste.png').convert()
+    background = pygame.image.load('imagens/Cidadinha.jpg').convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
     verde_img = pygame.image.load('imagens/Among_Us_Verde.png').convert_alpha()

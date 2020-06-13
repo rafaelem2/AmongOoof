@@ -16,11 +16,13 @@ pygame.display.set_caption('Among OOOF')
 text = ''
 mensagem = ''
 
-
+#Criando fundo
+fundo = pygame.image.load('imagens/Museu.jpg').convert()
+fundo = pygame.transform.scale(fundo, (WIDTH, HEIGHT))
 
 #Criando a fonte para o texto
-font_ola = pygame.font.SysFont(None, 50)
-font_outros = pygame.font.SysFont(None, 25)
+font_ola = pygame.font.SysFont(None, 80)
+font_outros = pygame.font.SysFont(None, 30)
 
 #Criando a cor branca
 white = (255, 255, 255) 
@@ -38,7 +40,7 @@ all_sprites = pygame.sprite.Group()
 
 #Criando o personagem morto
 preto_img = pygame.image.load('imagens/morto.png').convert_alpha()
-preto_img = pygame.transform.scale(preto_img, (200, 180))
+preto_img = pygame.transform.scale(preto_img, (150, 125))
 
 class Preto(pygame.sprite.Sprite): 
     def __init__(self, img):
@@ -47,7 +49,7 @@ class Preto(pygame.sprite.Sprite):
         self.image = img
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH/2
-        self.rect.centery = HEIGHT/2
+        self.rect.centery = (HEIGHT/2) + 220
 
 #Criando o personagem preto
 personagem_preto = Preto(preto_img)
@@ -62,7 +64,6 @@ while game:
     tempo_principal = pygame.time.get_ticks()
 
     clock.tick(FPS)
-    window.fill((255, 255, 255)) # Preenche com a cor branco
 
     #Escrevendo os textos
     mensagem1 = 'Olá, detetive!'
@@ -71,11 +72,11 @@ while game:
 
     mensagem2 = 'converse com os personagens'
     superficie_2 = font_outros.render(mensagem2, True, blood)
-    window.blit(superficie_2,(383-superficie_2.get_rect().width/2, 450))
+    window.blit(superficie_2,(383-superficie_2.get_rect().width/2, 120))
 
     mensagem3 = 'e descubra quem é o impostor'
     superficie_3 = font_outros.render(mensagem3, True, blood)
-    window.blit(superficie_3,(383-superficie_3.get_rect().width/2, 500))
+    window.blit(superficie_3,(383-superficie_3.get_rect().width/2, 150))
     '''
     mensagem4 = 'aperte espaço para começar'
     superficie_4 = font_outros.render(mensagem4, True, blood)
@@ -83,7 +84,7 @@ while game:
     '''
     mensagem5 = 'use as setas para andar pelo mapa,'
     superficie_5 = font_outros.render(mensagem5, True, blood)
-    window.blit(superficie_5,(383-superficie_5.get_rect().width/2, 400))
+    window.blit(superficie_5,(383-superficie_5.get_rect().width/2, 90))
 
     # ----- Trata eventos
     for event in pygame.event.get():
@@ -92,7 +93,7 @@ while game:
             game = False
     
     #Para o final
-    if tempo_principal >= 10000:
+    if tempo_principal >= 10000000000:
         Principal(window)
 
         '''
@@ -107,5 +108,6 @@ while game:
     all_sprites.update()
     all_sprites.draw(window)
     pygame.display.update()  # Mostra o novo frame para o jogador
+    window.blit(fundo, (0, 0))
 
 pygame.quit()
