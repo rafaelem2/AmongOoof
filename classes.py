@@ -18,8 +18,8 @@ class Jogador(pygame.sprite.Sprite):
 
         self.image = self.jogador_img_dir
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH / 2
-        self.rect.centery = HEIGHT / 2
+        self.rect.centerx = 50
+        self.rect.centery = HEIGHT - 380
         self.speedx = 0
         self.speedy = 0
         
@@ -53,8 +53,8 @@ class Verde(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 60
-        self.rect.centery = HEIGHT - 70
+        self.rect.centerx = WIDTH - 270
+        self.rect.centery = HEIGHT - 200
 
 class Vermelho(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -62,8 +62,8 @@ class Vermelho(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 500
-        self.rect.centery = HEIGHT - 200
+        self.rect.centerx = WIDTH - 120
+        self.rect.centery = 250
 
 class Amarelo(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -71,8 +71,8 @@ class Amarelo(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 400
-        self.rect.centery = HEIGHT - 120
+        self.rect.centerx = WIDTH - 370
+        self.rect.centery = HEIGHT - 80
 
 class Preto(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -98,8 +98,8 @@ class Rosa(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 100
-        self.rect.centery = HEIGHT - 350
+        self.rect.centerx = WIDTH - 190
+        self.rect.centery = HEIGHT - 465
 
 class Branco(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -107,8 +107,8 @@ class Branco(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 650
-        self.rect.centery = HEIGHT - 450
+        self.rect.centerx = WIDTH - 540
+        self.rect.centery = HEIGHT - 220
 
 class Roxo(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -125,8 +125,8 @@ class Laranja(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 400   
-        self.rect.centery = HEIGHT - 400
+        self.rect.centerx = WIDTH - 65
+        self.rect.centery = HEIGHT - 70
     
 class Azul(pygame.sprite.Sprite):
     def __init__(self, img):
@@ -134,5 +134,5 @@ class Azul(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 700
-        self.rect.centery = HEIGHT - 90
+        self.rect.centerx = WIDTH - 500
+        self.rect.centery = HEIGHT - 400

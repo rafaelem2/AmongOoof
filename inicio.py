@@ -85,11 +85,7 @@ while game:
     mensagem3 = 'e descubra quem é o impostor'
     superficie_3 = font_outros.render(mensagem3, True, blood)
     window.blit(superficie_3,(383-superficie_3.get_rect().width/2, 150))
-    '''
-    mensagem4 = 'aperte espaço para começar'
-    superficie_4 = font_outros.render(mensagem4, True, blood)
-    window.blit(superficie_4,(383-superficie_4.get_rect().width/2, 100))
-    '''
+    
     mensagem5 = 'use as setas para andar pelo mapa,'
     superficie_5 = font_outros.render(mensagem5, True, blood)
     window.blit(superficie_5,(383-superficie_5.get_rect().width/2, 90))
@@ -103,14 +99,6 @@ while game:
     #Para o final
     if tempo_principal >= 10000:
         Principal(window)
-
-        '''
-        #Verifica se apertou alguma tecla
-        if event.type == pygame.KEYDOWN:
-            #Dependendo da tecla, altera a velocidade
-            if event.key == pygame.K_SPACE:
-                Principal(window)
-        '''
 
     # ----- Gera saídas
     all_sprites.update()

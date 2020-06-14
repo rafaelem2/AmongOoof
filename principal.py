@@ -18,7 +18,7 @@ def Principal(window):
     #Criando o fundo e os personagens
     jogador_WIDTH = 50
     jogador_HEIGHT = 70
-    font = pygame.font.SysFont(None, 48)
+    font = pygame.font.SysFont(None, 38)
 
     quadro_img = pygame.image.load('imagens/o_quadro.png').convert_alpha()
     quadro_img = pygame.transform.scale(quadro_img, (40, 30))
@@ -41,7 +41,7 @@ def Principal(window):
     rosa_img = pygame.image.load('imagens/rosa_policial_esq.png').convert_alpha()
     rosa_img = pygame.transform.scale(rosa_img, (jogador_WIDTH, jogador_HEIGHT))
 
-    branco_img = pygame.image.load('imagens/branco_medico_esq.png').convert_alpha()
+    branco_img = pygame.image.load('imagens/branco_medico_dir.png').convert_alpha()
     branco_img = pygame.transform.scale(branco_img, (jogador_WIDTH, jogador_HEIGHT))
 
     roxo_img = pygame.image.load('imagens/roxo_piloto_dir.png').convert_alpha()
@@ -50,7 +50,7 @@ def Principal(window):
     laranja_img = pygame.image.load('imagens/laranja_astronauta_dir.png').convert_alpha()
     laranja_img = pygame.transform.scale(laranja_img, (jogador_WIDTH, jogador_HEIGHT))
 
-    azul_img = pygame.image.load('imagens/azul_frio_esq.png').convert_alpha()
+    azul_img = pygame.image.load('imagens/azul_frio_dir.png').convert_alpha()
     azul_img = pygame.transform.scale(azul_img, (jogador_WIDTH, jogador_HEIGHT - 10))
 
 
@@ -94,18 +94,22 @@ def Principal(window):
     all_sprites.add(personagem_verde)
     ob_verde.add(personagem_verde)
     text_verde = ''
+    text_verde2 = ''
+    text_verde3 = ''
 
     #Criando o personagem vermelho
     personagem_vermelho = Vermelho(vermelho_img)
     all_sprites.add(personagem_vermelho)
     ob_vermelho.add(personagem_vermelho)
     text_vermelho = ''
+    text_vermelho2 = ''
 
     #Criando o personagem amarelo
     personagem_amarelo = Amarelo(amarelo_img)
     all_sprites.add(personagem_amarelo)
     ob_amarelo.add(personagem_amarelo)
     text_aramelo = ''
+    text_aramelo2 = ''
 
     #Criando o personagem preto
     personagem_preto = Preto(preto_img)
@@ -123,6 +127,7 @@ def Principal(window):
     all_sprites.add(personagem_rosa)
     ob_rosa.add(personagem_rosa)
     text_rosa = ''
+    text_rosa2 = ''
 
     #Criando o personagem branco
     personagem_branco = Branco(branco_img)
@@ -135,6 +140,7 @@ def Principal(window):
     all_sprites.add(personagem_roxo)
     ob_roxo.add(personagem_roxo)
     text_roxo = ''
+    text_roxo2 = ''
 
     #Criando o personagem laranja
     personagem_laranja = Laranja(laranja_img)
@@ -147,6 +153,7 @@ def Principal(window):
     all_sprites.add(personagem_azul)
     ob_azul.add(personagem_azul)
     text_azul = ''
+    text_azul2 = ''
 
     #Definindo o valor RGB para branco, verde e azul (cores das fontes)
     white = (255, 255, 255) 
@@ -214,7 +221,7 @@ def Principal(window):
 
 
         #Imprimindo tempo
-        contando = 30 - (tempo_principal-10000)/1000
+        contando = 60 - (tempo_principal-10000)/1000
         conta = int(contando)
         superficie_cont = font.render(str(conta), True, blood)  
 
@@ -225,19 +232,23 @@ def Principal(window):
         hit_verde = pygame.sprite.spritecollide(player, ob_verde, False)
         if len(hit_verde) == 1:
             #fala_verde()
-            text_verde = 'bom dia'
+            text_verde = 'tentamos apagar o fogo mas ainda não conseguimos.'
+            text_verde2 = 'estava escuro ontem, será que confundiram ele '
+            text_verde3 = 'com um ladrão?'
             tempo_verde = pygame.time.get_ticks()
             
         #Verificando se houve colisão entre o jogador e o personagem vermelho
         hit_vermelho = pygame.sprite.spritecollide(player, ob_vermelho, False)
         if len(hit_vermelho) == 1:
-            text_vermelho = 'eae'
+            text_vermelho = 'é irônico que ele se salvou do incêndio '
+            text_vermelho2 = 'e morreu logo depois...'
             tempo_vermelho = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem amarelo
         hit_amarelo = pygame.sprite.spritecollide(player, ob_amarelo, False)
         if len(hit_amarelo) == 1:
-            text_aramelo = 'eae'
+            text_aramelo = 'Coronel Mostarda à sua disposição!'
+            text_aramelo2 = 'a missão do astronauta não era ontem à noite?'
             tempo_amarelo = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem preto
@@ -249,31 +260,34 @@ def Principal(window):
         #Verificando se houve colisão entre o jogador e o personagem rosa
         hit_rosa = pygame.sprite.spritecollide(player, ob_rosa, False)
         if len(hit_rosa) == 1:
-            text_rosa = 'eae'
+            text_rosa = 'quando passei aqui essa manhã não tinha mais ninguém,'
+            text_rosa2 = 'mas pelo menos um quadro foi salvo'
             tempo_rosa = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem branco
         hit_branco = pygame.sprite.spritecollide(player, ob_branco, False)
         if len(hit_branco) == 1:
-            text_branco = 'eae'
+            text_branco = 'tentei salvar o dono do museu, mas não consegui'
             tempo_branco = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem roxo
         hit_roxo = pygame.sprite.spritecollide(player, ob_roxo, False)
         if len(hit_roxo) == 1:
-            text_roxo = 'eae'
+            text_roxo = 'quando sobrevoei a cidade ontem à noite '
+            text_roxo2 = 'o museu já estava em chamas '
             tempo_roxo = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem laranja
         hit_laranja = pygame.sprite.spritecollide(player, ob_laranja, False)
         if len(hit_laranja) == 1:
-            text_laranja = 'eae'
+            text_laranja = 'não sei como vim parar aqui... era para eu estar em marte'
             tempo_laranja = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem azul
         hit_azul = pygame.sprite.spritecollide(player, ob_azul, False)
         if len(hit_azul) == 1:
-            text_azul = 'eae'
+            text_azul = 'ele levou um tiro nas costas, que covardia!'
+            text_azul2 = 'aliás está muito frio!'
             tempo_azul = pygame.time.get_ticks()
 
         # ----- Gera saídas
@@ -282,28 +296,39 @@ def Principal(window):
         #Criando padrões para formato do texto
         #superficie = font.render(text, True, blue)
         #tempo = pygame.time.get_ticks()
-        superficie_preto = font.render(text_preto, True, black2)
+        superficie_preto = font.render(text_preto, True, black2, white)
         superficie_aramelo = font.render(text_aramelo, True, yellow, black)
+        superficie_aramelo2 = font.render(text_aramelo2, True, yellow, black)
         superficie_azul = font.render(text_azul, True, blue, black)
+        superficie_azul2 = font.render(text_azul2, True, blue, black)
         superficie_branco = font.render(text_branco, True, white2, black)
         superficie_verde = font.render(text_verde, True, green, black)
+        superficie_verde2 = font.render(text_verde2, True, green, black)
+        superficie_verde3 = font.render(text_verde3, True, green, black)
         superficie_laranja = font.render(text_laranja, True, orange, black)
         superficie_rosa = font.render(text_rosa, True, pink, black)
+        superficie_rosa2 = font.render(text_rosa2, True, pink, black)
         superficie_roxo = font.render(text_roxo, True, purple, black)
+        superficie_roxo2 = font.render(text_roxo2, True, purple, black)
         superficie_vermelho = font.render(text_vermelho, True, red, black)
+        superficie_vermelho2 = font.render(text_vermelho2, True, red, black)
 
         #Para o verde
         if tempo_principal - tempo_verde < 500:
             window.blit(superficie_verde, (0,0))
+            window.blit(superficie_verde2, (0,27))
+            window.blit(superficie_verde3, (0,54))
         #window.blit(jogador, (meteor_x, meteor_y))
 
         #Para o vermelho
         if tempo_principal - tempo_vermelho < 200:
             window.blit(superficie_vermelho, (0,0))
+            window.blit(superficie_vermelho2, (0,27))
 
         #Para o amarelo
         if tempo_principal - tempo_amarelo < 200:
             window.blit(superficie_aramelo, (0,0))
+            window.blit(superficie_aramelo2, (0,27))
 
         #Para o preto
         if tempo_principal - tempo_preto < 200:
@@ -312,6 +337,7 @@ def Principal(window):
         #Para o rosa
         if tempo_principal - tempo_rosa < 200:
             window.blit(superficie_rosa, (0,0))
+            window.blit(superficie_rosa2, (0,28.5))
 
         #Para o branco
         if tempo_principal - tempo_branco < 200:
@@ -320,6 +346,7 @@ def Principal(window):
         #Para o roxo
         if tempo_principal - tempo_roxo < 200:
             window.blit(superficie_roxo, (0,0))
+            window.blit(superficie_roxo2, (0,27))
         
         #Para o laranja
         if tempo_principal - tempo_laranja < 200:
@@ -328,13 +355,14 @@ def Principal(window):
         #Para o azul
         if tempo_principal - tempo_azul < 200:
             window.blit(superficie_azul, (0,0))
+            window.blit(superficie_azul2, (0,27.5))
 
         #Para o tempo
-        if tempo_principal <= 4000:
+        if tempo_principal <= 70000:
             window.blit(superficie_cont,(WIDTH - 50, 20))
 
         #Para o final
-        if tempo_principal > 2000:
+        if tempo_principal > 70000:
             Final(window)
 
 
