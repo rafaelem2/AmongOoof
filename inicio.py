@@ -17,7 +17,7 @@ text = ''
 mensagem = ''
 
 #Criando fundo
-fundo = pygame.image.load('imagens/Museu.jpg').convert()
+fundo = pygame.image.load('imagens/museu_fogo.png').convert()
 fundo = pygame.transform.scale(fundo, (WIDTH, HEIGHT))
 
 #Criando a fonte para o texto

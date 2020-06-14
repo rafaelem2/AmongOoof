@@ -10,11 +10,11 @@ class Jogador(pygame.sprite.Sprite):
 
         #Criando variáveis para o jogador olhar para a esquerda e a direita
         jogador_WIDTH = 50
-        jogador_HEIGHT = 50
+        jogador_HEIGHT = 70
         self.jogador_img_esq = pygame.image.load('imagens/Among_Us_detetive_esq.png').convert_alpha()
-        self.jogador_img_esq = pygame.transform.scale(self.jogador_img_esq, (jogador_WIDTH, jogador_HEIGHT + 20))
+        self.jogador_img_esq = pygame.transform.scale(self.jogador_img_esq, (jogador_WIDTH, jogador_HEIGHT))
         self.jogador_img_dir = pygame.image.load('imagens/Among_Us_detetive.png').convert_alpha()
-        self.jogador_img_dir = pygame.transform.scale(self.jogador_img_dir, (jogador_WIDTH, jogador_HEIGHT + 20))
+        self.jogador_img_dir = pygame.transform.scale(self.jogador_img_dir, (jogador_WIDTH, jogador_HEIGHT))
 
         self.image = self.jogador_img_dir
         self.rect = self.image.get_rect()
@@ -37,7 +37,7 @@ class Jogador(pygame.sprite.Sprite):
             self.rect.top = 0
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
-           
+
 class Verde(pygame.sprite.Sprite):
     def __init__(self, img):
         pygame.sprite.Sprite.__init__(self)
@@ -71,8 +71,17 @@ class Preto(pygame.sprite.Sprite):
 
         self.image = img
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 300
-        self.rect.centery = HEIGHT - 500
+        self.rect.centerx = WIDTH - 390
+        self.rect.centery = 230
+
+class Quadro(pygame.sprite.Sprite):
+    def __init__(self, img):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH - 450
+        self.rect.centery = 230
 
 class Rosa(pygame.sprite.Sprite):
     def __init__(self, img):

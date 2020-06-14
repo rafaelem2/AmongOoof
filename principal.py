@@ -17,38 +17,41 @@ def Principal(window):
 
     #Criando o fundo e os personagens
     jogador_WIDTH = 50
-    jogador_HEIGHT = 50
+    jogador_HEIGHT = 70
     font = pygame.font.SysFont(None, 48)
 
-    background = pygame.image.load('imagens/Cidadinha.jpg').convert()
+    quadro_img = pygame.image.load('imagens/o_quadro.png').convert_alpha()
+    quadro_img = pygame.transform.scale(quadro_img, (40, 30))
+
+    background = pygame.image.load('imagens/cidadinha_fogo.png').convert()
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
-    verde_img = pygame.image.load('imagens/Among_Us_Verde.png').convert_alpha()
+    verde_img = pygame.image.load('imagens/verde_bombeiro_esq.png').convert_alpha()
     verde_img = pygame.transform.scale(verde_img, (jogador_WIDTH, jogador_HEIGHT))
 
-    vermelho_img = pygame.image.load('imagens/Among_Us_Vermelho.png').convert_alpha()
+    vermelho_img = pygame.image.load('imagens/vermelho_trabalhador_dir.png').convert_alpha()
     vermelho_img = pygame.transform.scale(vermelho_img, (jogador_WIDTH, jogador_HEIGHT))
 
-    amarelo_img = pygame.image.load('imagens/Among_Us_Amarelo.png').convert_alpha()
+    amarelo_img = pygame.image.load('imagens/amarelo_capitaomostarda_dir.png').convert_alpha()
     amarelo_img = pygame.transform.scale(amarelo_img, (jogador_WIDTH, jogador_HEIGHT))
 
     preto_img = pygame.image.load('imagens/morto.png').convert_alpha()
-    preto_img = pygame.transform.scale(preto_img, (jogador_WIDTH, jogador_HEIGHT))
+    preto_img = pygame.transform.scale(preto_img, (jogador_WIDTH, jogador_WIDTH))
 
-    rosa_img = pygame.image.load('imagens/Among_Us_Rosa.png').convert_alpha()
+    rosa_img = pygame.image.load('imagens/rosa_policial_esq.png').convert_alpha()
     rosa_img = pygame.transform.scale(rosa_img, (jogador_WIDTH, jogador_HEIGHT))
 
-    branco_img = pygame.image.load('imagens/Among_Us_Branco.png').convert_alpha()
+    branco_img = pygame.image.load('imagens/branco_medico_esq.png').convert_alpha()
     branco_img = pygame.transform.scale(branco_img, (jogador_WIDTH, jogador_HEIGHT))
 
-    roxo_img = pygame.image.load('imagens/Among_Us_Roxo.png').convert_alpha()
+    roxo_img = pygame.image.load('imagens/roxo_piloto_dir.png').convert_alpha()
     roxo_img = pygame.transform.scale(roxo_img, (jogador_WIDTH, jogador_HEIGHT))
 
-    laranja_img = pygame.image.load('imagens/Among_Us_Laranja.png').convert_alpha()
+    laranja_img = pygame.image.load('imagens/laranja_astronauta_dir.png').convert_alpha()
     laranja_img = pygame.transform.scale(laranja_img, (jogador_WIDTH, jogador_HEIGHT))
 
-    azul_img = pygame.image.load('imagens/Among_Us_Azul.png').convert_alpha()
-    azul_img = pygame.transform.scale(azul_img, (jogador_WIDTH, jogador_HEIGHT))
+    azul_img = pygame.image.load('imagens/azul_frio_esq.png').convert_alpha()
+    azul_img = pygame.transform.scale(azul_img, (jogador_WIDTH, jogador_HEIGHT - 10))
 
 
 
@@ -79,6 +82,7 @@ def Principal(window):
     ob_roxo = pygame.sprite.Group()
     ob_laranja = pygame.sprite.Group()
     ob_azul = pygame.sprite.Group()
+    ob_quadro = pygame.sprite.Group()
 
 
     # Criando o jogador
@@ -108,6 +112,11 @@ def Principal(window):
     all_sprites.add(personagem_preto)
     ob_preto.add(personagem_preto)
     text_preto = ''
+
+    #Criando o quadro
+    o_quadro = Quadro(quadro_img)
+    all_sprites.add(o_quadro)
+    ob_quadro.add(o_quadro)
 
     #Criando o personagem rosa
     personagem_rosa = Rosa(rosa_img)
@@ -274,14 +283,14 @@ def Principal(window):
         #superficie = font.render(text, True, blue)
         #tempo = pygame.time.get_ticks()
         superficie_preto = font.render(text_preto, True, black2)
-        superficie_aramelo = font.render(text_aramelo, True, yellow)
-        superficie_azul = font.render(text_azul, True, blue)
-        superficie_branco = font.render(text_branco, True, white2)
+        superficie_aramelo = font.render(text_aramelo, True, yellow, black)
+        superficie_azul = font.render(text_azul, True, blue, black)
+        superficie_branco = font.render(text_branco, True, white2, black)
         superficie_verde = font.render(text_verde, True, green, black)
-        superficie_laranja = font.render(text_laranja, True, orange)
-        superficie_rosa = font.render(text_rosa, True, pink)
-        superficie_roxo = font.render(text_roxo, True, purple)
-        superficie_vermelho = font.render(text_vermelho, True, red)
+        superficie_laranja = font.render(text_laranja, True, orange, black)
+        superficie_rosa = font.render(text_rosa, True, pink, black)
+        superficie_roxo = font.render(text_roxo, True, purple, black)
+        superficie_vermelho = font.render(text_vermelho, True, red, black)
 
         #Para o verde
         if tempo_principal - tempo_verde < 500:
@@ -321,11 +330,11 @@ def Principal(window):
             window.blit(superficie_azul, (0,0))
 
         #Para o tempo
-        if tempo_principal <= 40000:
+        if tempo_principal <= 4000:
             window.blit(superficie_cont,(WIDTH - 50, 20))
 
         #Para o final
-        if tempo_principal > 400:
+        if tempo_principal > 20000:
             Final(window)
 
 

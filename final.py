@@ -27,6 +27,9 @@ def Final(window):
     jogador_img = pygame.image.load('imagens/Among_Us_detetive.png').convert_alpha()
     jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2 + 16))
 
+   # jogador_img = pygame.image.load('imagens/o_quadro.png').convert_alpha()
+    #jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2 + 16))
+
     verde_img = pygame.image.load('imagens/Among_Us_Verde_esq.png').convert_alpha()
     verde_img = pygame.transform.scale(verde_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
