@@ -38,6 +38,15 @@ class Jogador(pygame.sprite.Sprite):
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
 
+class Titulo(pygame.sprite.Sprite):
+        def __init__(self, img):
+            pygame.sprite.Sprite.__init__(self)
+
+            self.image = img
+            self.rect = self.image.get_rect()
+            self.rect.centerx = WIDTH / 2
+            self.rect.centery = 210
+
 class Verde(pygame.sprite.Sprite):
     def __init__(self, img):
         pygame.sprite.Sprite.__init__(self)

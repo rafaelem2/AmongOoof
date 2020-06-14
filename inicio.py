@@ -11,7 +11,7 @@ WIDTH = 383*2
 HEIGHT = 286*2
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Among OOOF')
-
+ 
 #Criando variáveis
 text = ''
 mensagem = ''
@@ -19,6 +19,10 @@ mensagem = ''
 #Criando fundo
 fundo = pygame.image.load('imagens/museu_fogo.png').convert()
 fundo = pygame.transform.scale(fundo, (WIDTH, HEIGHT))
+
+#Criando o título
+titulo_img = pygame.image.load('imagens/titulo_among_ooof.png').convert()
+titulo_img = pygame.transform.scale(titulo_img, (203, 47))
 
 #Criando a fonte para o texto
 font_ola = pygame.font.SysFont(None, 80)
@@ -37,6 +41,10 @@ FPS = 30
     
 #Definindo all sprites
 all_sprites = pygame.sprite.Group()
+
+#Criando o título
+titulo = Titulo(titulo_img)
+all_sprites.add(titulo)
 
 #Criando o personagem morto
 preto_img = pygame.image.load('imagens/morto.png').convert_alpha()
@@ -93,7 +101,7 @@ while game:
             game = False
     
     #Para o final
-    if tempo_principal >= 1000:
+    if tempo_principal >= 10000:
         Principal(window)
 
         '''
