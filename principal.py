@@ -268,7 +268,6 @@ def Principal(window):
             tempo_azul = pygame.time.get_ticks()
 
         # ----- Gera saídas
-        window.fill((0, 0, 0))  # Preenche com a cor preta
         window.blit(background, (0, 0))
 
         #Criando padrões para formato do texto
@@ -326,7 +325,7 @@ def Principal(window):
             window.blit(superficie_cont,(WIDTH - 50, 20))
 
         #Para o final
-        if tempo_principal > 40000:
+        if tempo_principal > 400:
             Final(window)
 
 

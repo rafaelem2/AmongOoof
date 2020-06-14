@@ -93,7 +93,7 @@ while game:
             game = False
     
     #Para o final
-    if tempo_principal >= 10000000000:
+    if tempo_principal >= 1000:
         Principal(window)
 
         '''

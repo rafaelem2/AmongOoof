@@ -2,6 +2,7 @@
 import pygame
 from classes_final import *
 from pygame import mixer
+from Explicacao import *
 
 def Final(window):
     #Criando tela
@@ -164,8 +165,8 @@ def Final(window):
         window.blit(superficie2,(383-superficie2.get_rect().width/2,20))
 
         #Acertou o assassino            
-        hit_verde = pygame.sprite.spritecollide(player, ob_verde, False)
-        if len(hit_verde) == 1:
+        hit_rosa = pygame.sprite.spritecollide(player, ob_rosa, False)
+        if len(hit_rosa) == 1:
             text = 'Parabéns, você acertou! :D'
             #Colocando a música
             mixer.music.load('sons/ganhou.mp3')
@@ -175,12 +176,12 @@ def Final(window):
         #Errou o assassino
         hit_vermelho = pygame.sprite.spritecollide(player, ob_vermelho, False)
         hit_amarelo = pygame.sprite.spritecollide(player, ob_amarelo, False)
-        hit_rosa = pygame.sprite.spritecollide(player, ob_rosa, False)
+        hit_verde = pygame.sprite.spritecollide(player, ob_verde, False)
         hit_branco = pygame.sprite.spritecollide(player, ob_branco, False)
         hit_roxo = pygame.sprite.spritecollide(player, ob_roxo, False)
         hit_laranja = pygame.sprite.spritecollide(player, ob_laranja, False)
         hit_azul = pygame.sprite.spritecollide(player, ob_azul, False)
-        if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_rosa) == 1 or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
+        if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_verde) or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
             text = 'Você errou, reinicie e tente de novo :('
             #Colocando a música de abertura
             mixer.music.load('sons/perdeu.mp3')
@@ -203,9 +204,13 @@ def Final(window):
         pygame.display.update()  # Mostra o novo frame para o jogador
 
         #fim
-        if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_rosa) == 1 or len(hit_verde) or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
+        if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_verde) or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
             pygame.time.delay(2000)
             pygame.quit()
+
+        if len(hit_rosa) == 1:
+            pygame.time.delay(2000)
+            explicacao(window)
     
 pygame.quit()
 
