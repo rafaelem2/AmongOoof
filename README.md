@@ -13,9 +13,6 @@ Não é necessário apertar nada na tela de início, o jogo começará automatic
 * Já a história por trás foi inspirada em uma charada do aplicativo Dark Stories, um puzzle da Treebit Technologies feito para ser jogado em grupo.
 * O nome "Among OOOF" foi inspirado em um canal do YouTube que faz gameplays de Among Us, o Vitaminando.
 
-## Vídeo explicativo
-Segue o vídeo demonstrando a funcionalidade do jogo:
-
 ## Referências para a construção do código
 * Documentação oficial: https://www.pygame.org/docs/
 * Arquivos da pasta referencia.zip, fornecidos por nosso professor da disciplina de Design de Software
@@ -24,4 +21,4 @@ Segue o vídeo demonstrando a funcionalidade do jogo:
 Isabelle Moschini Murollo e Rafael Evangelista Monteiro
 
 ### Esperamos que goste!
-E lembre-se: há uma lógica, tente entender a história.
+#### E lembre-se: há uma lógica, tente entender a história.
