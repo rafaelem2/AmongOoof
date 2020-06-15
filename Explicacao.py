@@ -82,18 +82,12 @@ def explicacao(window):
         mensagem_final4 = 'que ele estava roubando e atirou'
         superficie_4 = font_fim.render(mensagem_final4, True, red)
         window.blit(superficie_4,(383-superficie_4.get_rect().width/2, 140))
-
-        mensagem_final5 = 'aperte espaço para sair'
-        superficie_5 = font_fim.render(mensagem_final5, True, white)
-        window.blit(superficie_5,(383-superficie_5.get_rect().width/2, 180))
         
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                 #Aperta para sair
-                if event.key == pygame.K_SPACE:
-                    pygame.quit()
+            if event.type == pygame.QUIT:
+                game = False
         
-        # ----- Gera saídas
+        # ----- Gera saídas -----
         all_sprites.update()
         all_sprites.draw(window)
         pygame.display.update()  # Mostra o novo frame para o jogador

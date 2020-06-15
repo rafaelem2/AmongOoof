@@ -357,7 +357,7 @@ def Principal(window):
             window.blit(superficie_cont,(WIDTH - 40, 00))
 
         #Para o final
-        if tempo_principal > 100000:
+        if tempo_principal > 100:
             Final(window)
 
 

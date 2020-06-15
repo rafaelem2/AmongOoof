@@ -28,14 +28,14 @@ titulo_img = pygame.transform.scale(titulo_img, (203, 47))
 font_ola = pygame.font.SysFont(None, 80)
 font_outros = pygame.font.SysFont(None, 30)
 
-#Criando a cor branca
+#Criando as cores
 white = (255, 255, 255) 
 blood = (208, 35, 44)
 
-# ----- Inicia estruturas de dados
+# ----- Inicia estruturas de dados -----
 game = True
 
-# Variável para o ajuste de velocidade
+#Criando variável para ajustar de velocidade
 clock = pygame.time.Clock()
 FPS = 30
     
@@ -46,7 +46,7 @@ all_sprites = pygame.sprite.Group()
 titulo = Titulo(titulo_img)
 all_sprites.add(titulo)
 
-#Criando o personagem morto
+#Criando o personagem preto morto
 preto_img = pygame.image.load('imagens/morto.png').convert_alpha()
 preto_img = pygame.transform.scale(preto_img, (150, 125))
 
@@ -59,7 +59,6 @@ class Preto(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH/2
         self.rect.centery = (HEIGHT/2) + 220
 
-#Criando o personagem preto
 personagem_preto = Preto(preto_img)
 all_sprites.add(personagem_preto)
 
@@ -67,10 +66,10 @@ all_sprites.add(personagem_preto)
 mixer.music.load('sons/abertura.mp3')
 mixer.music.play(-1)
 
+# ===== Loop principal =====
 while game:
     #Começando a contagem de tempo
     tempo_principal = pygame.time.get_ticks()
-
     clock.tick(FPS)
 
     #Escrevendo os textos
@@ -86,13 +85,13 @@ while game:
     superficie_3 = font_outros.render(mensagem3, True, blood)
     window.blit(superficie_3,(383-superficie_3.get_rect().width/2, 150))
     
-    mensagem5 = 'use as setas para andar pelo mapa,'
-    superficie_5 = font_outros.render(mensagem5, True, blood)
-    window.blit(superficie_5,(383-superficie_5.get_rect().width/2, 90))
+    mensagem4 = 'use as setas para andar pelo mapa,'
+    superficie_4 = font_outros.render(mensagem4, True, blood)
+    window.blit(superficie_4,(383-superficie_4.get_rect().width/2, 90))
 
-    # ----- Trata eventos
+    # ----- Trata eventos -----
     for event in pygame.event.get():
-        # ----- Verifica consequências
+        #Verificando se a pessoa quer sair do jogo
         if event.type == pygame.QUIT:
             game = False
     
@@ -100,10 +99,10 @@ while game:
     if tempo_principal >= 10000:
         Principal(window)
 
-    # ----- Gera saídas
+    # ----- Gera saídas -----
     all_sprites.update()
     all_sprites.draw(window)
-    pygame.display.update()  # Mostra o novo frame para o jogador
+    pygame.display.update()  
     window.blit(fundo, (0, 0))
 
 pygame.quit()
