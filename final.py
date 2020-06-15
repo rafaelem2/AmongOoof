@@ -4,10 +4,14 @@ from classes_final import *
 from pygame import mixer
 from Explicacao import *
 
+#Criando a função final
 def Final(window):
     #Criando tela
     WIDTH = 383*2
     HEIGHT = 286*2
+
+    #Criando a fonte para os textos
+    font = pygame.font.SysFont(None, 48)
 
     #Criando variáveis
     text = ''
@@ -15,18 +19,14 @@ def Final(window):
     text3 = ''
     mensagem = ''
 
-    #Criando a cor branca
+    #Criando cores
     white = (255, 255, 255) 
-    red = (255,0,0)
+    red = (255,0,0)    
 
     #Criando o fundo e os personagens
     jogador_WIDTH2 = 80
     jogador_HEIGHT2 = 96
 
-    jogador_WIDTH = 50
-    jogador_HEIGHT = 70
-
-    font = pygame.font.SysFont(None, 48)
     background = pygame.image.load('imagens/mapa teste.png').convert() 
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
@@ -60,14 +60,15 @@ def Final(window):
     azul_img = pygame.image.load('imagens/azul_frio_esq.png').convert_alpha()
     azul_img = pygame.transform.scale(azul_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    # ----- Inicia estruturas de dados
+
+    # ----- Inicia estruturas de dados -----
     game = True
 
-    # Variável para o ajuste de velocidade
+    #Criando variável para ajustar de velocidade
     clock = pygame.time.Clock()
     FPS = 30
 
-    #Definindo all sprites
+    #Definindo all sprites e objetos para cada personagem
     all_sprites = pygame.sprite.Group()
     ob_verde = pygame.sprite.Group()
     ob_vermelho = pygame.sprite.Group()
@@ -78,7 +79,7 @@ def Final(window):
     ob_laranja = pygame.sprite.Group()
     ob_azul = pygame.sprite.Group()
 
-    # Criando o jogador
+    #Criando o jogador
     player = Jogador(jogador_img)
     all_sprites.add(player)
 
@@ -122,21 +123,22 @@ def Final(window):
     all_sprites.add(personagem_azul)
     ob_azul.add(personagem_azul)
 
-    #Jogador para de andar
+    #Fazendo o jogador parar de andar
     player.speedx = 0
 
-    #Colocando a música de abertura
+    #Colocando a música de abertura de novo
     mixer.music.load('sons/abertura.mp3')
     mixer.music.play(-1)
 
     # ===== Loop principal =====
     while game:
+        #Começando a contagem de tempo
         clock.tick(FPS)
-        window.fill((0, 0, 0))  # Preenche com a cor preta
+        window.fill((0, 0, 0))
 
-        # ----- Trata eventos
+        # ----- Trata eventos -----
         for event in pygame.event.get():
-            # ----- Verifica consequências
+            #Verificando se a pessoa quer sair do jogo
             if event.type == pygame.QUIT:
                 game = False
 
@@ -154,7 +156,6 @@ def Final(window):
                 if event.key == pygame.K_DOWN:
                     player.speedy = -8
             
-                
             #Verifica se soltou alguma tecla
             if event.type == pygame.KEYUP:
                 #Dependendo da tecla, altera a velocidade
@@ -180,7 +181,6 @@ def Final(window):
             mixer.music.load('sons/ganhou.mp3')
             mixer.music.play(-1)
            
-        
         #Errou o assassino
         hit_vermelho = pygame.sprite.spritecollide(player, ob_vermelho, False)
         hit_amarelo = pygame.sprite.spritecollide(player, ob_amarelo, False)
@@ -197,7 +197,6 @@ def Final(window):
             #Colocando a música de abertura
             mixer.music.load('sons/perdeu.mp3')
             mixer.music.play(-1)
-            
 
         #Criando padrões para formato do texto
         superficie = font.render(text, True, white)
@@ -209,24 +208,24 @@ def Final(window):
         window.blit(superficie2,(WIDTH/2 - superficie2.get_rect().width/2, HEIGHT/2))
         window.blit(superficie3,(WIDTH/2 - superficie3.get_rect().width/2, HEIGHT/2 + 40))
 
-        # ----- Gera saídas
-        
-        all_sprites.update()
-        
-        all_sprites.draw(window)
-        
-        pygame.display.update()  # Mostra o novo frame para o jogador
 
-        #fim
+        # ----- Gera saídas e atualiza estado de jogo -----
+        all_sprites.update()
+        all_sprites.draw(window)
+        pygame.display.update()
+
+
+        #Finalizando o jogo (errou o assassino)
         if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_verde) or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
             pygame.time.delay(2000)
             pygame.quit()
 
+        #Passando para a Explicacao (acertou o assassino)
         if len(hit_rosa) == 1:
             pygame.time.delay(3000)
             explicacao(window)
-    
-pygame.quit()
 
+        
 
-    
+# ===== Finalização =====
+pygame.quit()   

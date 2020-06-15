@@ -1,11 +1,14 @@
+#Importando biblioteca
 import pygame
 
+#Criando tela
 WIDTH = 383*2
 HEIGHT = 286*2
 
+#Criando classes dos personagens
 class Jogador(pygame.sprite.Sprite):
     def __init__(self, img):
-        # Construtor da classe mãe (Sprite)
+        #Construindo a classe mãe (Sprite)
         pygame.sprite.Sprite.__init__(self)
 
         #Criando variáveis para o jogador olhar para a esquerda e a direita
@@ -24,11 +27,11 @@ class Jogador(pygame.sprite.Sprite):
         self.speedy = 0
         
     def update(self):
-        # Atualização da posição do personagem
+        #Atualizando da posição do personagem
         self.rect.x += self.speedx
         self.rect.y -= self.speedy
 
-        # Mantem dentro da tela
+        #Mantendo dentro da tela
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
         if self.rect.left < 0:

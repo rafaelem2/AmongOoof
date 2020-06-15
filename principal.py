@@ -15,11 +15,13 @@ def Principal(window):
     window = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption('Among OOOF')
 
+    #Criando a fonte para os textos
+    font = pygame.font.SysFont(None, 38)
+    font2 = pygame.font.SysFont(None, 50)
+
     #Criando o fundo e os personagens
     jogador_WIDTH = 50
     jogador_HEIGHT = 70
-    font = pygame.font.SysFont(None, 38)
-    font2 = pygame.font.SysFont(None, 50)
 
     quadro_img = pygame.image.load('imagens/o_quadro.png').convert_alpha()
     quadro_img = pygame.transform.scale(quadro_img, (40, 30))
@@ -55,15 +57,7 @@ def Principal(window):
     azul_img = pygame.transform.scale(azul_img, (jogador_WIDTH, jogador_HEIGHT - 10))
 
 
-
-    # ----- Inicia estruturas de dados
-    # Definindo os novos tipos
-
-    #Colocando a música de fundo
-    mixer.music.load('sons/principal_musica.mp3')
-    mixer.music.play(-1)
-
-    # ----- Inicia estruturas de dados
+    # ----- Inicia estruturas de dados -----
     game = True
 
     # Variável para o ajuste de velocidade
@@ -178,19 +172,24 @@ def Principal(window):
     tempo_laranja = pygame.time.get_ticks()
     tempo_azul = pygame.time.get_ticks()
 
+    #Colocando a música de fundo
+    mixer.music.load('sons/principal_musica.mp3')
+    mixer.music.play(-1)
+
+
     # ===== Loop principal =====
     while game:
+        #Começando a contagem de tempo
         clock.tick(FPS)
-
         tempo_principal = pygame.time.get_ticks()
 
-        # ----- Trata eventos
+        # ----- Trata eventos -----
         for event in pygame.event.get():
-            # ----- Verifica consequências
+            #Verificando se a pessoa quer sair do jogo
             if event.type == pygame.QUIT:
                 game = False
 
-            #Verifica se apertou alguma tecla
+            #Verificando se apertou alguma tecla
             if event.type == pygame.KEYDOWN:
                 #Dependendo da tecla, altera a velocidade
                 if event.key == pygame.K_LEFT:
@@ -204,7 +203,7 @@ def Principal(window):
                 if event.key == pygame.K_DOWN:
                     player.speedy -= 8
                 
-            #Verifica se soltou alguma tecla
+            #Verificando se soltou alguma tecla
             if event.type == pygame.KEYUP:
                 #Dependendo da tecla, altera a velocidade
                 if event.key == pygame.K_LEFT:
@@ -216,19 +215,17 @@ def Principal(window):
                 if event.key == pygame.K_DOWN:
                     player.speedy += 8
 
-
-        #Imprimindo tempo
-        contando = 90 - (tempo_principal-10000)/1000
+        #Imprimindo tempo (cronômetro)
+        contando = 10 - (tempo_principal-20000)/1000
         conta = int(contando)
         superficie_cont = font2.render(str(conta), True, blood)  
 
-        # ----- Atualiza estado do jogo
+        # ----- Atualizando estado do jogo -----
         all_sprites.update()
 
         #Verificando se houve colisão entre o jogador e o personagem verde
         hit_verde = pygame.sprite.spritecollide(player, ob_verde, False)
         if len(hit_verde) == 1:
-            #fala_verde()
             text_verde = 'tentamos apagar o fogo mas ainda não conseguimos.'
             text_verde2 = 'estava escuro ontem, será que confundiram ele '
             text_verde3 = 'com um ladrão?'
@@ -252,7 +249,6 @@ def Principal(window):
         hit_preto = pygame.sprite.spritecollide(player, ob_preto, False)
         if len(hit_preto) == 1:
             text_preto = 'estou morto ;-;'
-            window.blit(superficie_preto, (0,0))
             tempo_preto = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem rosa
@@ -287,8 +283,8 @@ def Principal(window):
             text_azul = 'ele levou um tiro nas costas, que covardia!'
             text_azul2 = 'aliás está muito frio!'
             tempo_azul = pygame.time.get_ticks()
-
-        # ----- Gera saídas
+        
+        # ----- Gerando saídas ------
         window.blit(background, (0, 0))
 
         #Criando padrões para formato do texto
@@ -353,17 +349,16 @@ def Principal(window):
             window.blit(superficie_azul2, (0,27.5))
 
         #Para o tempo
-        if tempo_principal <= 100000:
+        if tempo_principal <= 30000:
             window.blit(superficie_cont,(WIDTH - 40, 00))
 
-        #Para o final
-        if tempo_principal > 100:
+        #Passando para o final
+        if tempo_principal > 30000:
             Final(window)
 
-
+        # ----- Mostrando frames -----
         all_sprites.draw(window)
-        pygame.display.update()  # Mostra o novo frame para o jogador
+        pygame.display.update() 
 
     # ===== Finalização =====
-    pygame.quit()  # Função do PyGame que finaliza os recursos utilizados
-
+    pygame.quit()

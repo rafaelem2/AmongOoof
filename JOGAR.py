@@ -11,10 +11,18 @@ WIDTH = 383*2
 HEIGHT = 286*2
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Among OOOF')
- 
+
+#Criando a fonte para o texto
+font_ola = pygame.font.SysFont(None, 80)
+font_outros = pygame.font.SysFont(None, 30) 
+
 #Criando variáveis
 text = ''
 mensagem = ''
+
+#Criando as cores
+white = (255, 255, 255) 
+blood = (208, 35, 44)
 
 #Criando fundo
 fundo = pygame.image.load('imagens/museu_fogo.png').convert()
@@ -24,21 +32,6 @@ fundo = pygame.transform.scale(fundo, (WIDTH, HEIGHT))
 titulo_img = pygame.image.load('imagens/titulo_among_ooof.png').convert()
 titulo_img = pygame.transform.scale(titulo_img, (203, 47))
 
-#Criando a fonte para o texto
-font_ola = pygame.font.SysFont(None, 80)
-font_outros = pygame.font.SysFont(None, 30)
-
-#Criando as cores
-white = (255, 255, 255) 
-blood = (208, 35, 44)
-
-# ----- Inicia estruturas de dados -----
-game = True
-
-#Criando variável para ajustar de velocidade
-clock = pygame.time.Clock()
-FPS = 30
-    
 #Definindo all sprites
 all_sprites = pygame.sprite.Group()
 
@@ -62,6 +55,14 @@ class Preto(pygame.sprite.Sprite):
 personagem_preto = Preto(preto_img)
 all_sprites.add(personagem_preto)
 
+
+# ----- Inicia estruturas de dados -----
+game = True
+
+#Criando variável para ajustar de velocidade
+clock = pygame.time.Clock()
+FPS = 30
+
 #Colocando a música de abertura
 mixer.music.load('sons/abertura.mp3')
 mixer.music.play(-1)
@@ -71,6 +72,12 @@ while game:
     #Começando a contagem de tempo
     tempo_principal = pygame.time.get_ticks()
     clock.tick(FPS)
+
+    # ----- Trata eventos -----
+    for event in pygame.event.get():
+        #Verificando se a pessoa quer sair do jogo
+        if event.type == pygame.QUIT:
+            game = False
 
     #Escrevendo os textos
     mensagem1 = 'Olá, detetive!'
@@ -89,20 +96,15 @@ while game:
     superficie_4 = font_outros.render(mensagem4, True, blood)
     window.blit(superficie_4,(383-superficie_4.get_rect().width/2, 90))
 
-    # ----- Trata eventos -----
-    for event in pygame.event.get():
-        #Verificando se a pessoa quer sair do jogo
-        if event.type == pygame.QUIT:
-            game = False
-    
-    #Para o final
-    if tempo_principal >= 10000:
+    #Passando para o final
+    if tempo_principal >= 20000:
         Principal(window)
 
-    # ----- Gera saídas -----
+    # ----- Gera saídas e atualiza estado de jogo -----
     all_sprites.update()
     all_sprites.draw(window)
     pygame.display.update()  
     window.blit(fundo, (0, 0))
 
+# ===== Finalização =====
 pygame.quit()
