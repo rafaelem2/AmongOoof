@@ -11,6 +11,8 @@ def Final(window):
 
     #Criando variáveis
     text = ''
+    text2 = ''
+    text3 = ''
     mensagem = ''
 
     #Criando a cor branca
@@ -19,41 +21,44 @@ def Final(window):
 
     #Criando o fundo e os personagens
     jogador_WIDTH2 = 80
-    jogador_HEIGHT2 = 80
+    jogador_HEIGHT2 = 96
+
+    jogador_WIDTH = 50
+    jogador_HEIGHT = 70
+
     font = pygame.font.SysFont(None, 48)
     background = pygame.image.load('imagens/mapa teste.png').convert() 
     background = pygame.transform.scale(background, (WIDTH, HEIGHT))
 
     jogador_img = pygame.image.load('imagens/Among_Us_detetive.png').convert_alpha()
-    jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2 + 16))
+    jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-   # jogador_img = pygame.image.load('imagens/o_quadro.png').convert_alpha()
-    #jogador_img = pygame.transform.scale(jogador_img, (jogador_WIDTH2, jogador_HEIGHT2 + 16))
-
-    verde_img = pygame.image.load('imagens/Among_Us_Verde_esq.png').convert_alpha()
+    verde_img = pygame.image.load('imagens/verde_bombeiro_esq.png').convert_alpha()
     verde_img = pygame.transform.scale(verde_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    vermelho_img = pygame.image.load('imagens/Among_Us_Vermelho.png').convert_alpha()
+    vermelho_img = pygame.image.load('imagens/vermelho_trabalhador_dir.png').convert_alpha()
     vermelho_img = pygame.transform.scale(vermelho_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    amarelo_img = pygame.image.load('imagens/Among_Us_Amarelo_esq.png').convert_alpha()
+    amarelo_img = pygame.image.load('imagens/amarelo_capitaomostarda_esq.png').convert_alpha()
     amarelo_img = pygame.transform.scale(amarelo_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    rosa_img = pygame.image.load('imagens/Among_Us_Rosa_esq.png').convert_alpha()
+    preto_img = pygame.image.load('imagens/morto.png').convert_alpha()
+    preto_img = pygame.transform.scale(preto_img, (jogador_WIDTH2, jogador_WIDTH2))
+
+    rosa_img = pygame.image.load('imagens/rosa_policial_esq.png').convert_alpha()
     rosa_img = pygame.transform.scale(rosa_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    branco_img = pygame.image.load('imagens/Among_Us_Branco.png').convert_alpha()
-    branco_img = pygame.transform.scale(branco_img, (jogador_WIDTH2, jogador_HEIGHT2))
+    branco_img = pygame.image.load('imagens/branco_medico_dir.png').convert_alpha()
+    branco_img = pygame.transform.scale(branco_img, (jogador_WIDTH2 - 10, jogador_HEIGHT2))
 
-    roxo_img = pygame.image.load('imagens/Among_Us_Roxo.png').convert_alpha()
+    roxo_img = pygame.image.load('imagens/roxo_piloto_dir.png').convert_alpha()
     roxo_img = pygame.transform.scale(roxo_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    laranja_img = pygame.image.load('imagens/Among_Us_Laranja.png').convert_alpha()
+    laranja_img = pygame.image.load('imagens/laranja_astronauta_dir.png').convert_alpha()
     laranja_img = pygame.transform.scale(laranja_img, (jogador_WIDTH2, jogador_HEIGHT2))
 
-    azul_img = pygame.image.load('imagens/Among_Us_Azul_esq.png').convert_alpha()
+    azul_img = pygame.image.load('imagens/azul_frio_esq.png').convert_alpha()
     azul_img = pygame.transform.scale(azul_img, (jogador_WIDTH2, jogador_HEIGHT2))
-
 
     # ----- Inicia estruturas de dados
     game = True
@@ -184,8 +189,11 @@ def Final(window):
         hit_roxo = pygame.sprite.spritecollide(player, ob_roxo, False)
         hit_laranja = pygame.sprite.spritecollide(player, ob_laranja, False)
         hit_azul = pygame.sprite.spritecollide(player, ob_azul, False)
+
         if len(hit_vermelho) == 1 or len(hit_amarelo) == 1 or len(hit_verde) or len(hit_branco) == 1 or len(hit_roxo) == 1 or len(hit_laranja) == 1 or len(hit_azul) == 1:
             text = 'Você errou, reinicie e tente de novo :('
+            text2 = 'Preste atenção nos detalhes'
+            text3 = 'Como ele morreu?'
             #Colocando a música de abertura
             mixer.music.load('sons/perdeu.mp3')
             mixer.music.play(-1)
@@ -193,10 +201,13 @@ def Final(window):
 
         #Criando padrões para formato do texto
         superficie = font.render(text, True, white)
+        superficie2 = font.render(text2, True, white)
+        superficie3 = font.render(text3, True, white)
 
         #Posição do texto
-        window.blit(superficie,(383-superficie.get_rect().width/2,286))
-
+        window.blit(superficie,(WIDTH/2 - superficie.get_rect().width/2, HEIGHT/2 - 40))
+        window.blit(superficie2,(WIDTH/2 - superficie2.get_rect().width/2, HEIGHT/2))
+        window.blit(superficie3,(WIDTH/2 - superficie3.get_rect().width/2, HEIGHT/2 + 40))
 
         # ----- Gera saídas
         
@@ -212,7 +223,7 @@ def Final(window):
             pygame.quit()
 
         if len(hit_rosa) == 1:
-            pygame.time.delay(2000)
+            pygame.time.delay(3000)
             explicacao(window)
     
 pygame.quit()

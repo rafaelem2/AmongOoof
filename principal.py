@@ -19,6 +19,7 @@ def Principal(window):
     jogador_WIDTH = 50
     jogador_HEIGHT = 70
     font = pygame.font.SysFont(None, 38)
+    font2 = pygame.font.SysFont(None, 50)
 
     quadro_img = pygame.image.load('imagens/o_quadro.png').convert_alpha()
     quadro_img = pygame.transform.scale(quadro_img, (40, 30))
@@ -82,8 +83,6 @@ def Principal(window):
     ob_roxo = pygame.sprite.Group()
     ob_laranja = pygame.sprite.Group()
     ob_azul = pygame.sprite.Group()
-    ob_quadro = pygame.sprite.Group()
-
 
     # Criando o jogador
     player = Jogador()
@@ -120,7 +119,6 @@ def Principal(window):
     #Criando o quadro
     o_quadro = Quadro(quadro_img)
     all_sprites.add(o_quadro)
-    ob_quadro.add(o_quadro)
 
     #Criando o personagem rosa
     personagem_rosa = Rosa(rosa_img)
@@ -170,7 +168,6 @@ def Principal(window):
     yellow = (255, 248, 64)
 
     #Criando variáveisde tempo
-    #tempo_principal = pygame.time.get_ticks()
     tempo_verde = pygame.time.get_ticks()
     tempo_vermelho = pygame.time.get_ticks()
     tempo_amarelo = pygame.time.get_ticks()
@@ -221,9 +218,9 @@ def Principal(window):
 
 
         #Imprimindo tempo
-        contando = 60 - (tempo_principal-10000)/1000
+        contando = 90 - (tempo_principal-10000)/1000
         conta = int(contando)
-        superficie_cont = font.render(str(conta), True, blood)  
+        superficie_cont = font2.render(str(conta), True, blood)  
 
         # ----- Atualiza estado do jogo
         all_sprites.update()
@@ -255,6 +252,7 @@ def Principal(window):
         hit_preto = pygame.sprite.spritecollide(player, ob_preto, False)
         if len(hit_preto) == 1:
             text_preto = 'estou morto ;-;'
+            window.blit(superficie_preto, (0,0))
             tempo_preto = pygame.time.get_ticks()
 
         #Verificando se houve colisão entre o jogador e o personagem rosa
@@ -294,8 +292,6 @@ def Principal(window):
         window.blit(background, (0, 0))
 
         #Criando padrões para formato do texto
-        #superficie = font.render(text, True, blue)
-        #tempo = pygame.time.get_ticks()
         superficie_preto = font.render(text_preto, True, black2, white)
         superficie_aramelo = font.render(text_aramelo, True, yellow, black)
         superficie_aramelo2 = font.render(text_aramelo2, True, yellow, black)
@@ -314,55 +310,54 @@ def Principal(window):
         superficie_vermelho2 = font.render(text_vermelho2, True, red, black)
 
         #Para o verde
-        if tempo_principal - tempo_verde < 500:
+        if tempo_principal - tempo_verde < 2:
             window.blit(superficie_verde, (0,0))
             window.blit(superficie_verde2, (0,27))
             window.blit(superficie_verde3, (0,54))
-        #window.blit(jogador, (meteor_x, meteor_y))
 
         #Para o vermelho
-        if tempo_principal - tempo_vermelho < 200:
+        if tempo_principal - tempo_vermelho < 2:
             window.blit(superficie_vermelho, (0,0))
             window.blit(superficie_vermelho2, (0,27))
 
         #Para o amarelo
-        if tempo_principal - tempo_amarelo < 200:
+        if tempo_principal - tempo_amarelo < 2:
             window.blit(superficie_aramelo, (0,0))
             window.blit(superficie_aramelo2, (0,27))
-
+        
         #Para o preto
-        if tempo_principal - tempo_preto < 200:
+        if tempo_principal - tempo_preto < 2:
             window.blit(superficie_preto, (0,0))
-
+        
         #Para o rosa
-        if tempo_principal - tempo_rosa < 200:
+        if tempo_principal - tempo_rosa < 2:
             window.blit(superficie_rosa, (0,0))
             window.blit(superficie_rosa2, (0,28.5))
 
         #Para o branco
-        if tempo_principal - tempo_branco < 200:
+        if tempo_principal - tempo_branco < 2:
             window.blit(superficie_branco, (0,0))
         
         #Para o roxo
-        if tempo_principal - tempo_roxo < 200:
+        if tempo_principal - tempo_roxo < 2:
             window.blit(superficie_roxo, (0,0))
             window.blit(superficie_roxo2, (0,27))
         
         #Para o laranja
-        if tempo_principal - tempo_laranja < 200:
+        if tempo_principal - tempo_laranja < 2:
             window.blit(superficie_laranja, (0,0))
         
         #Para o azul
-        if tempo_principal - tempo_azul < 200:
+        if tempo_principal - tempo_azul < 2:
             window.blit(superficie_azul, (0,0))
             window.blit(superficie_azul2, (0,27.5))
 
         #Para o tempo
-        if tempo_principal <= 70000:
-            window.blit(superficie_cont,(WIDTH - 50, 20))
+        if tempo_principal <= 100000:
+            window.blit(superficie_cont,(WIDTH - 40, 00))
 
         #Para o final
-        if tempo_principal > 70000:
+        if tempo_principal > 100000:
             Final(window)
 
 
