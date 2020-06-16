@@ -22,3 +22,4 @@ Isabelle Moschini Murollo e Rafael Evangelista Monteiro
 
 ### Esperamos que goste!
 #### E lembre-se: há uma lógica, tente entender a história.
+### Para jogar, abra o arquivo JOGAR.py.
