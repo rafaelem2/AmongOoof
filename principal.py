@@ -216,7 +216,7 @@ def Principal(window):
                     player.speedy += 8
 
         #Imprimindo tempo (cronômetro)
-        contando = 10 - (tempo_principal-20000)/1000
+        contando = 10 - (tempo_principal-90000)/1000
         conta = int(contando)
         superficie_cont = font2.render(str(conta), True, blood)  
 
@@ -349,11 +349,11 @@ def Principal(window):
             window.blit(superficie_azul2, (0,27.5))
 
         #Para o tempo
-        if tempo_principal <= 30000:
+        if tempo_principal <= 100000:
             window.blit(superficie_cont,(WIDTH - 40, 00))
 
         #Passando para o final
-        if tempo_principal > 30000:
+        if tempo_principal > 100000:
             Final(window)
 
         # ----- Mostrando frames -----
