@@ -1,6 +1,6 @@
 #Importando bibliotecas
 import pygame
-from classes_final import *
+from classes import *
 from pygame import mixer
 from Explicacao import *
 

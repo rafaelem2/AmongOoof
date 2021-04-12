@@ -2,6 +2,7 @@
 import pygame
 from principal import *
 from pygame import mixer
+from classes import *
 
 #Inicializando
 pygame.init()
@@ -36,23 +37,14 @@ titulo_img = pygame.transform.scale(titulo_img, (203, 47))
 all_sprites = pygame.sprite.Group()
 
 #Criando o título
-titulo = Titulo(titulo_img)
+titulo = Titulo(titulo_img, WIDTH/2, 210)
 all_sprites.add(titulo)
 
 #Criando o personagem preto morto
 preto_img = pygame.image.load('imagens/morto.png').convert_alpha()
 preto_img = pygame.transform.scale(preto_img, (150, 125))
 
-class Preto(pygame.sprite.Sprite): 
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH/2
-        self.rect.centery = (HEIGHT/2) + 220
-
-personagem_preto = Preto(preto_img)
+personagem_preto = Personagens(preto_img, WIDTH/2, (HEIGHT/2) + 220 )
 all_sprites.add(personagem_preto)
 
 

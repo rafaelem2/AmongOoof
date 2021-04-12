@@ -1,5 +1,6 @@
 #Importando biblioteca
 import pygame
+from pygame import mixer
 
 #Criando tela
 WIDTH = 383*2
@@ -11,7 +12,7 @@ def toca_musica(musica):
 
 #Criando classes dos personagens
 class Jogador(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, img, width, height, x, y):
         #Construindo a classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
@@ -19,14 +20,14 @@ class Jogador(pygame.sprite.Sprite):
         jogador_WIDTH = 50
         jogador_HEIGHT = 70
         self.jogador_img_esq = pygame.image.load('imagens/Among_Us_detetive_esq.png').convert_alpha()
-        self.jogador_img_esq = pygame.transform.scale(self.jogador_img_esq, (jogador_WIDTH, jogador_HEIGHT))
+        self.jogador_img_esq = pygame.transform.scale(self.jogador_img_esq, (width, height))
         self.jogador_img_dir = pygame.image.load('imagens/Among_Us_detetive.png').convert_alpha()
-        self.jogador_img_dir = pygame.transform.scale(self.jogador_img_dir, (jogador_WIDTH, jogador_HEIGHT))
+        self.jogador_img_dir = pygame.transform.scale(self.jogador_img_dir, (width, height))
 
         self.image = self.jogador_img_dir
         self.rect = self.image.get_rect()
-        self.rect.centerx = 50
-        self.rect.centery = HEIGHT - 380
+        self.rect.centerx = x
+        self.rect.centery = y
         self.speedx = 0
         self.speedy = 0
         
@@ -45,103 +46,21 @@ class Jogador(pygame.sprite.Sprite):
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
 
-#Criando classes dos personagens
-class Verde(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 270
-        self.rect.centery = HEIGHT - 200
-
-class Vermelho(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 120
-        self.rect.centery = 250
-
-class Amarelo(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 370
-        self.rect.centery = HEIGHT - 80
-
-class Preto(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 390
-        self.rect.centery = 230
-
-class Quadro(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 450
-        self.rect.centery = 230
-
-class Rosa(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 190
-        self.rect.centery = HEIGHT - 465
-
-class Branco(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 540
-        self.rect.centery = HEIGHT - 220
-
-class Roxo(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 600 
-        self.rect.centery = HEIGHT - 50
-
-class Laranja(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 65
-        self.rect.centery = HEIGHT - 70
-    
-class Azul(pygame.sprite.Sprite):
-    def __init__(self, img):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = img
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH - 500
-        self.rect.centery = HEIGHT - 400
-
 #Criando classe do título
 class Titulo(pygame.sprite.Sprite):
-        def __init__(self, img):
+        def __init__(self, img, x, y):
             pygame.sprite.Sprite.__init__(self)
 
             self.image = img
             self.rect = self.image.get_rect()
-            self.rect.centerx = WIDTH / 2
-            self.rect.centery = 210
+            self.rect.centerx = x
+            self.rect.centery = y
+
+class Personagens(pygame.sprite.Sprite):
+    def __init__(self, img,x,y):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.centerx = x
+        self.rect.centery = y
