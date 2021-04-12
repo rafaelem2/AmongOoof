@@ -178,8 +178,7 @@ def Final(window):
         if len(hit_rosa) == 1:
             text = 'Parabéns, você acertou! :D'
             #Colocando a música
-            mixer.music.load('sons/ganhou.mp3')
-            mixer.music.play(-1)
+            toca_musica('sons/ganhou.mp3')
            
         #Errou o assassino
         hit_vermelho = pygame.sprite.spritecollide(player, ob_vermelho, False)
@@ -195,8 +194,7 @@ def Final(window):
             text2 = 'Preste atenção nos detalhes'
             text3 = 'Como ele morreu?'
             #Colocando a música de abertura
-            mixer.music.load('sons/perdeu.mp3')
-            mixer.music.play(-1)
+            toca_musica('sons/perdeu.mp3')
 
         #Criando padrões para formato do texto
         superficie = font.render(text, True, white)

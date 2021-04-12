@@ -5,6 +5,10 @@ import pygame
 WIDTH = 383*2
 HEIGHT = 286*2
 
+def toca_musica(musica):
+    mixer.music.load(musica)
+    mixer.music.play(-1)
+
 #Criando classes dos personagens
 class Jogador(pygame.sprite.Sprite):
     def __init__(self):

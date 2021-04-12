@@ -64,8 +64,7 @@ clock = pygame.time.Clock()
 FPS = 30
 
 #Colocando a música de abertura
-mixer.music.load('sons/abertura.mp3')
-mixer.music.play(-1)
+toca_musica('sons/abertura.mp3')
 
 # ===== Loop principal =====
 while game:
