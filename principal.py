@@ -79,11 +79,11 @@ def Principal(window):
     ob_azul = pygame.sprite.Group()
 
     # Criando o jogador
-    player = Jogador()
+    player = Jogador(jogador_img, 50, 70, 50, HEIGHT - 380 )
     all_sprites.add(player)
 
     #Criando o personagem verde
-    personagem_verde = Verde(verde_img)
+    personagem_verde = Personagens(verde_img, WIDTH-270, HEIGHT-200)
     all_sprites.add(personagem_verde)
     ob_verde.add(personagem_verde)
     text_verde = 'tentamos apagar o fogo mas ainda não conseguimos.'
@@ -91,57 +91,57 @@ def Principal(window):
     text_verde3 = 'com um ladrão?'
 
     #Criando o personagem vermelho
-    personagem_vermelho = Vermelho(vermelho_img)
+    personagem_vermelho = Personagens(vermelho_img, WIDTH - 120, 250)
     all_sprites.add(personagem_vermelho)
     ob_vermelho.add(personagem_vermelho)
     text_vermelho = 'é irônico que ele se salvou do incêndio '
     text_vermelho2 = 'e morreu logo depois...'
 
     #Criando o personagem amarelo
-    personagem_amarelo = Amarelo(amarelo_img)
+    personagem_amarelo = Personagens(amarelo_img, WIDTH - 370, HEIGHT - 80)
     all_sprites.add(personagem_amarelo)
     ob_amarelo.add(personagem_amarelo)
     text_aramelo = 'Coronel Mostarda à sua disposição!'
     text_aramelo2 = 'a missão do astronauta não era ontem à noite?'
 
     #Criando o personagem preto
-    personagem_preto = Preto(preto_img)
+    personagem_preto = Personagens(preto_img, WIDTH - 390, 230)
     all_sprites.add(personagem_preto)
     ob_preto.add(personagem_preto)
     text_preto = 'estou morto ;-;'
 
     #Criando o quadro
-    o_quadro = Quadro(quadro_img)
+    o_quadro = Personagens(quadro_img, WIDTH - 450, 230)
     all_sprites.add(o_quadro)
 
     #Criando o personagem rosa
-    personagem_rosa = Rosa(rosa_img)
+    personagem_rosa = Personagens(rosa_img, WIDTH - 190, HEIGHT - 465)
     all_sprites.add(personagem_rosa)
     ob_rosa.add(personagem_rosa)
     text_rosa = 'quando passei aqui essa manhã não tinha mais ninguém,'
     text_rosa2 = 'mas pelo menos um quadro foi salvo'
 
     #Criando o personagem branco
-    personagem_branco = Branco(branco_img)
+    personagem_branco = Personagens(branco_img, WIDTH - 540, HEIGHT - 220)
     all_sprites.add(personagem_branco)
     ob_branco.add(personagem_branco)
     text_branco = 'tentei salvar o dono do museu, mas não consegui'
 
     #Criando o personagem roxo
-    personagem_roxo = Roxo(roxo_img)
+    personagem_roxo = Personagens(roxo_img, WIDTH - 600, HEIGHT - 50)
     all_sprites.add(personagem_roxo)
     ob_roxo.add(personagem_roxo)
     text_roxo = 'quando sobrevoei a cidade ontem à noite '
     text_roxo2 = 'o museu já estava em chamas '
 
     #Criando o personagem laranja
-    personagem_laranja = Laranja(laranja_img)
+    personagem_laranja = Personagens(laranja_img, WIDTH - 65, HEIGHT - 70)
     all_sprites.add(personagem_laranja)
     ob_laranja.add(personagem_laranja)
     text_laranja = 'não sei como vim parar aqui... era para eu estar em marte'
 
     #Criando o personagem azul
-    personagem_azul = Azul(azul_img)
+    personagem_azul = Personagens(azul_img, WIDTH - 500, HEIGHT - 400)
     all_sprites.add(personagem_azul)
     ob_azul.add(personagem_azul)
     text_azul = 'ele levou um tiro nas costas, que covardia!'

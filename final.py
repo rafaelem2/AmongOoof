@@ -80,46 +80,46 @@ def Final(window):
     ob_azul = pygame.sprite.Group()
 
     #Criando o jogador
-    player = Jogador(jogador_img)
+    player = Jogador(jogador_img,80, 100, WIDTH/2, HEIGHT/2)
     all_sprites.add(player)
 
     #Criando o personagem verde
-    personagem_verde = Verde(verde_img)
+    personagem_verde = Personagens(verde_img,WIDTH - 116, HEIGHT - 200)
     all_sprites.add(personagem_verde)
     ob_verde.add(personagem_verde)
 
     #Criando o personagem vermelho
-    personagem_vermelho = Vermelho(vermelho_img)
+    personagem_vermelho = Personagens(vermelho_img, WIDTH - 650, HEIGHT - 200)
     all_sprites.add(personagem_vermelho)
     ob_vermelho.add(personagem_vermelho)
 
     #Criando o personagem amarelo
-    personagem_amarelo = Amarelo(amarelo_img)
+    personagem_amarelo = Personagens(amarelo_img, WIDTH - 266, HEIGHT - 100)
     all_sprites.add(personagem_amarelo)
     ob_amarelo.add(personagem_amarelo)
 
     #Criando o personagem rosa
-    personagem_rosa = Rosa(rosa_img)
+    personagem_rosa = Personagens(rosa_img, WIDTH - 116, HEIGHT - 372)
     all_sprites.add(personagem_rosa)
     ob_rosa.add(personagem_rosa)
     
     #Criando o personagem branco
-    personagem_branco = Branco(branco_img)
+    personagem_branco = Personagens(branco_img, WIDTH - 650, HEIGHT - 372)
     all_sprites.add(personagem_branco)
     ob_branco.add(personagem_branco)
 
     #Criando o personagem roxo
-    personagem_roxo = Roxo(roxo_img)
+    personagem_roxo = Personagens(roxo_img, WIDTH - 500, HEIGHT - 100)
     all_sprites.add(personagem_roxo)
     ob_roxo.add(personagem_roxo)
 
     #Criando o personagem laranja
-    personagem_laranja = Laranja(laranja_img)
+    personagem_laranja = Personagens(laranja_img, WIDTH - 500, HEIGHT - 472)
     all_sprites.add(personagem_laranja)
     ob_laranja.add(personagem_laranja)
 
     #Criando o personagem azul
-    personagem_azul = Azul(azul_img)
+    personagem_azul = Personagens(azul_img, WIDTH - 266, HEIGHT - 472)
     all_sprites.add(personagem_azul)
     ob_azul.add(personagem_azul)
 
